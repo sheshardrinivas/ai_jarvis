@@ -1,0 +1,9 @@
+speechrecognition
+wheel
+setuptools
+subprocess.run
+pyflac
+pyaudio
+colorama
+
+pynput
