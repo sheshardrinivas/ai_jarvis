@@ -1,0 +1,13 @@
+{
+  "start": [
+    {
+      "greeting": "Good morning sir.",
+      "question": "How can I help you today?"
+    },
+    {
+      "greeting": "Good afternoon sir.",
+      "question": "How can I help you ?"
+    },
+    { "greeting": "Good evening sir.", "question": "How can I assist today?" }
+  ]
+}

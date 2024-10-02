@@ -9,7 +9,7 @@ from webbrowser import open_new
 from playsound import playsound
 import datetime
 import json
-from def_1 import question_1_0
+from def_1 import question_1_0,learn
 counter=0
 l=True
 colorama.init(autoreset=True)
@@ -65,9 +65,10 @@ def detect(text):
          print(f"the time is {strtime}")
          subprocess.call(["say","-v", "Daniel",f"the time is {strtime}"])
      elif "what is" in text.lower():
-         q_value=question_1_0("do you want my to learn.",["yes","no"])
+         q_value=question_1_0("do you want me to learn.",["why not","no"])
          if q_value ==0:
-             pass
+             print("ok")
+             learn()
 
 
      else :
