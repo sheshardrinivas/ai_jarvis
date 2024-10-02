@@ -48,7 +48,7 @@ def learn():
                     print("lowercase: ",response3.lower())
                     ans=response3
                     print(q,":",ans)
-                except sr.UUnknownValueError:
+                except sr.UnknownValueError:
                     pass
 
         except sr.UnknownValueError:
