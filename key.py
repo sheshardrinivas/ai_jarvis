@@ -82,7 +82,8 @@ def detect(text):
              subprocess.call(["say","-v","Daniel",data["ans"][1]])
 
 
-
+         elif "learn"  in text.lower() :
+             learn_fun()
 
      else :
             subprocess.call(["say","-v","Daniel", "sorry,can't understand that."])
