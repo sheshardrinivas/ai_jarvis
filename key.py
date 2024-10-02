@@ -64,7 +64,10 @@ def detect(text):
          strtime=datetime.datetime.now().strftime("%H:%M:%S")
          print(f"the time is {strtime}")
          subprocess.call(["say","-v", "Daniel",f"the time is {strtime}"])
-
+     elif "what is" in text.lower():
+         q_value=question_1_0("do you want my to learn.",["yes","no"])
+         if q_value ==0:
+             pass
 
 
      else :
