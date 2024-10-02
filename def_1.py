@@ -1,7 +1,7 @@
 
 import speech_recognition as sr
 import subprocess
-
+import json
 def question_1_0(q,ans):
 
     with sr.Microphone() as source:
@@ -24,6 +24,11 @@ def question_1_0(q,ans):
             print("not an opion!")
             return 404
 def learn():
+    try:
+        with open("learn.json", 'r') as file:
+            data = json.load(file)
+    except FileNotFoundError:
+        data = {"questions": [], "ans": []}
     with sr.Microphone() as source:
 
         recognition2=sr.Recognizer()
@@ -48,6 +53,11 @@ def learn():
                     print("lowercase: ",response3.lower())
                     ans=response3
                     print(q,":",ans)
+                    data["questions"].append(q)
+                    data["ans"].append(ans)
+                    with open("learn.json", 'w') as file:
+                        json.dump(data, file, indent=2)
+                    print("Question and answer added successfully!")
                 except sr.UnknownValueError:
                     pass
 
