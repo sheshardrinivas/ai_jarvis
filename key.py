@@ -40,6 +40,11 @@ def start():
         subprocess.call(["say","-v", "Daniel",f"{g}"])
         subprocess.call(["say","-v", "Daniel",f"{q}"])
     activate()
+def learn_fun():
+    q_value=question_1_0("do you want me to learn.",["why not","no"])
+    if q_value ==0:
+        print("ok")
+        learn()
 def detect(text):
 
 
@@ -65,10 +70,18 @@ def detect(text):
          print(f"the time is {strtime}")
          subprocess.call(["say","-v", "Daniel",f"the time is {strtime}"])
      elif "what is" in text.lower():
-         q_value=question_1_0("do you want me to learn.",["why not","no"])
-         if q_value ==0:
-             print("ok")
-             learn()
+         with open("learn.json", 'r') as file:
+            data = json.load(file)
+
+
+         if  text.lower() == data["questions"][0]:
+             print(data["questions"][0]+":"+data["ans"][0])
+             subprocess.call(["say","-v","Daniel",data["ans"][0]])
+         if  text.lower() == data["questions"][1]:
+             print(data["questions"][1]+":"+data["ans"][1])
+             subprocess.call(["say","-v","Daniel",data["ans"][1]])
+
+
 
 
      else :
