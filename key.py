@@ -77,12 +77,12 @@ def detect(text):
          if  text.lower() == data["questions"][0]:
              print(data["questions"][0]+":"+data["ans"][0])
              subprocess.call(["say","-v","Daniel",data["ans"][0]])
-         if  text.lower() == data["questions"][1]:
+         elif  text.lower() == data["questions"][1]:
              print(data["questions"][1]+":"+data["ans"][1])
              subprocess.call(["say","-v","Daniel",data["ans"][1]])
 
 
-         elif "learn"  in text.lower() :
+     elif "learn"  in text.lower() :
              learn_fun()
 
      else :
