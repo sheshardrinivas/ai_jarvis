@@ -84,13 +84,13 @@ def detect(text,data):
      elif "what is" in text.lower():
          with open("learn.json", 'r') as file:
             data = json.load(file)
-
-         if  text.lower() in str(data["questions"][0]):
-             print(data["questions"][0]+":"+data["ans"][0])
-             subprocess.call(["say","-v","Daniel",data["ans"][0]])
-         elif  text.lower() in str(data["questions"][1]):
-             print(data["questions"][1]+":"+data["ans"][1])
-             subprocess.call(["say","-v","Daniel",data["ans"][1]])
+         if data["questions"][0]:
+            if  text.lower() in str(data["questions"][0]):
+                print(data["questions"][0]+":"+data["ans"][0])
+                subprocess.call(["say","-v","Daniel",data["ans"][0]])
+            elif  text.lower() in str(data["questions"][1]):
+                print(data["questions"][1]+":"+data["ans"][1])
+                subprocess.call(["say","-v","Daniel",data["ans"][1]])
 
 
      elif "jarvis" in text.lower()  and "understand"  in text.lower() :
