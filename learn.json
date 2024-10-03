@@ -1,4 +1,7 @@
 {
-  "questions": [],
-  "ans": []
+  "questions": ["what is a light bulb", "what is a solar panel"],
+  "ans": [
+    "light bulb is a device which emits light",
+    "solar panel is a device which can get the energy from the Sun"
+  ]
 }
