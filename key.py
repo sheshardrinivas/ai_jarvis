@@ -14,38 +14,50 @@ counter=0
 l=True
 colorama.init(autoreset=True)
 def start():
-    current_hour = datetime.datetime.now().hour
-    print(f"The time is {current_hour:02d}:00")
-    with open("r.json","r") as f:
-        data=json.loads(f.read())
-    if 5 <= current_hour < 12:
-        g=data["start"][0]["greeting"]
-        q=data["start"][random.randint(0,2)]["question"]
-        print(g)
-        print(q)
-        subprocess.call(["say","-v", "Daniel",f"{g}"])
-        subprocess.call(["say","-v", "Daniel",f"{q}"])
-    elif 12 <= current_hour < 18:
-        g=data["start"][1]["greeting"]
-        q=data["start"][random.randint(0,2)]["question"]
-        print(g)
-        print(q)
-        subprocess.call(["say","-v", "Daniel",f"{g}"])
-        subprocess.call(["say","-v", "Daniel",f"{q}"])
-    elif 18 <= current_hour < 22:
-        g=data["start"][2]["greeting"]
-        q=data["start"][random.randint(0,2)]["question"]
-        print(g)
-        print(q)
-        subprocess.call(["say","-v", "Daniel",f"{g}"])
-        subprocess.call(["say","-v", "Daniel",f"{q}"])
-    activate()
+    if counter==0:
+        current_hour = datetime.datetime.now().hour
+        print(f"The time is {current_hour:02d}:00")
+        with open("r.json","r") as f:
+            data=json.loads(f.read())
+        if 5 <= current_hour < 12:
+            g=data["start"][0]["greeting"]
+            q=data["start"][random.randint(0,2)]["question"]
+            t=data["start"][random.randint(0,2)]["tell"]
+            print(g)
+            print(t)
+            print(q)
+            subprocess.call(["say","-v", "Daniel",f"{g}"])
+            subprocess.call(["say","-v", "Daniel",f"{t}"])
+            subprocess.call(["say","-v", "Daniel",f"{q}"])
+        elif 12 <= current_hour < 18:
+            g=data["start"][1]["greeting"]
+            q=data["start"][random.randint(0,2)]["question"]
+            t=data["start"][random.randint(0,2)]["tell"]
+            print(g)
+            print(t)
+            print(q)
+            subprocess.call(["say","-v", "Daniel",f"{g}"])
+            subprocess.call(["say","-v", "Daniel",f"{t}"])
+            subprocess.call(["say","-v", "Daniel",f"{q}"])
+        elif 18 <= current_hour < 22:
+            g=data["start"][2]["greeting"]
+            q=data["start"][random.randint(0,2)]["question"]
+            t=data["start"][random.randint(0,2)]["tell"]
+            print(g)
+            print(t)
+            print(q)
+            subprocess.call(["say","-v", "Daniel",f"{g}"])
+            subprocess.call(["say","-v", "Daniel",f"{t}"])
+            subprocess.call(["say","-v", "Daniel",f"{q}"])
+        activate()
+    elif counter>=0:
+        activate()
 def learn_fun():
-    q_value=question_1_0("do you want me to learn.",["why not","no"])
+    q_value=question_1_0("do you want me to learn.",["yes","no"])
     if q_value ==0:
         print("ok")
         learn()
-def detect(text):
+def detect(text,data):
 
 
      if "lumos" in text.lower() :
@@ -62,7 +74,7 @@ def detect(text):
             print("going to sleep...")
             sleep1()
 
-     elif "youtube" in text.lower() :
+     elif "jarvis" in text.lower()  and "youtube" in text.lower() :
          open_new("https://www.youtube.com")
 
      elif  "what is the time" in text.lower():
@@ -73,22 +85,23 @@ def detect(text):
          with open("learn.json", 'r') as file:
             data = json.load(file)
 
-
-         if  text.lower() == data["questions"][0]:
+         if  text.lower() in str(data["questions"][0]):
              print(data["questions"][0]+":"+data["ans"][0])
              subprocess.call(["say","-v","Daniel",data["ans"][0]])
-         elif  text.lower() == data["questions"][1]:
+         elif  text.lower() in str(data["questions"][1]):
              print(data["questions"][1]+":"+data["ans"][1])
              subprocess.call(["say","-v","Daniel",data["ans"][1]])
 
 
-     elif "learn"  in text.lower() :
+     elif "jarvis" in text.lower()  and "understand"  in text.lower() :
              learn_fun()
 
      else :
-            subprocess.call(["say","-v","Daniel", "sorry,can't understand that."])
-            print("sorry,can't understand that.")
+            subprocess.call(["say","-v","Daniel", f"{data["IDK"][random.randint(0,2)]["tell"]}"])
+            print(f"{data["IDK"][random.randint(0,2)]["tell"]}")
 def activate():
+ with open("r.json","r") as f:
+        data=json.loads(f.read())
  playsound("jug-pop-2-186887.mp3")
  print("listening.....")
 
@@ -109,7 +122,7 @@ def activate():
               print("lowercase: ",response2.lower())
 
 
-              detect(text=response2.lower())
+              detect(text=response2.lower(),data=data)
 
 
              except sr.UnknownValueError:
@@ -117,6 +130,7 @@ def activate():
               if counter >=2:
                   subprocess.call(["say","-v", "Daniel","good bye sir."])
                   print("going to sleep...")
+                  counter=+1
                   key_detect()
 def sleep1():
     playsound("notification-sound-7062.mp3")
@@ -136,11 +150,11 @@ def sleep1():
 
           response=recognition.recognize_google(audio)
           print(response)
-          if "wake up" in response.lower():
+          if "jarvis" in response.lower()  and "wake up" in response.lower():
               activate()
               break
-          if "goodbye" in response.lower():
-
+          if "jarvis" in response.lower()  and "goodbye" in response.lower():
+              counter=+1
               key_detect()
               break
 

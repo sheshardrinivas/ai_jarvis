@@ -1,13 +1,24 @@
 {
   "start": [
     {
-      "greeting": "Good morning sir.",
+      "greeting": "Good morning sir",
+      "tell": "I am your personal assistant jarvis",
       "question": "How can I help you today?"
     },
     {
-      "greeting": "Good afternoon sir.",
+      "greeting": "Good afternoon sir",
+      "tell": "I am jarvis",
       "question": "How can I help you ?"
     },
-    { "greeting": "Good evening sir.", "question": "How can I assist today?" }
+    {
+      "greeting": "Good evening sir",
+      "tell": "hello , I am jarvis",
+      "question": "How can I assist today?"
+    }
+  ],
+  "IDK": [
+    { "tell": "sorry sir,can't understand that." },
+    { "tell": "sorry ,can't understand the command." },
+    { "tell": "unable, to hear you. Can you repeat." }
   ]
 }
