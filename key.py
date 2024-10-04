@@ -89,6 +89,13 @@ def detect(text,data):
              if text.lower() in data["questions"][i]:
                  print(data["questions"][i]+":"+data["ans"][i])
                  subprocess.call(["say","-v", "Daniel",f"{data["ans"][i]}"])
+             if text.lower() not in data["questions"][i]:
+                 with open("r.json","r") as f:
+                        data2=json.loads(f.read())
+                 say_2=data2["IDK"][3]["tell"]
+                 subprocess.call(["say","-v","Daniel", f"{say_2}{text.lower()}"])
+                 print(f"{say_2}{text.lower()}")
+                 learn_fun()
 
 
 

@@ -12,13 +12,14 @@
     },
     {
       "greeting": "Good evening sir",
-      "tell": "hello , I am jarvis",
+      "tell": "I am jarvis, i stand for just a very intelligent system",
       "question": "How can I assist today?"
     }
   ],
   "IDK": [
     { "tell": "sorry sir,can't understand that." },
     { "tell": "sorry ,can't understand the command." },
-    { "tell": "unable, to hear you. Can you repeat." }
+    { "tell": "unable, to hear you. Can you repeat." },
+    { "tell": "Sorry, i do not know " }
   ]
 }
