@@ -8,6 +8,7 @@ def question_1_0(q,ans):
         print(f"{ans[0]}:{ans[1]}")
         recognition2=sr.Recognizer()
         recognition2.adjust_for_ambient_noise(source)
+        print(q)
         subprocess.call(["say","-v", "Daniel",f"{q}"])
         try:
             audio2=recognition2.listen(source,timeout=False,phrase_time_limit=10)
@@ -40,7 +41,7 @@ def learn():
             response2=recognition2.recognize_google(audio2)
             print(response2)
             print("lowercase: ",response2.lower())
-            q=response2
+            q=response2.lower()
             with sr.Microphone() as source:
 
                 recognition3=sr.Recognizer()
@@ -51,7 +52,7 @@ def learn():
                     response3=recognition3.recognize_google(audio3)
                     print(response3)
                     print("lowercase: ",response3.lower())
-                    ans=response3
+                    ans=response3.lower()
                     print(q,":",ans)
                     data["questions"].append(q)
                     data["ans"].append(ans)

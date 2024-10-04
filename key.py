@@ -53,8 +53,8 @@ def start():
     elif counter>=0:
         activate()
 def learn_fun():
-    q_value=question_1_0("do you want me to learn.",["yes","no"])
-    if q_value ==0:
+    q_value=question_1_0("should I start the machine learning protocol?",["no","start"])
+    if q_value ==1:
         print("ok")
         learn()
 def detect(text,data):
@@ -77,7 +77,7 @@ def detect(text,data):
      elif "jarvis" in text.lower()  and "youtube" in text.lower() :
          open_new("https://www.youtube.com")
 
-     elif  "what is the time" in text.lower():
+     elif "jarvis" in text.lower()  and   "what is the time" in text.lower():
          strtime=datetime.datetime.now().strftime("%H:%M:%S")
          print(f"the time is {strtime}")
          subprocess.call(["say","-v", "Daniel",f"the time is {strtime}"])
@@ -88,15 +88,17 @@ def detect(text,data):
          for i in range(len(data["questions"])):
              if text.lower() in data["questions"][i]:
                  print(data["questions"][i]+":"+data["ans"][i])
-                 subprocess.call(["say","-v", "Daniel",f"the time is {data["ans"][i]}"])
+                 subprocess.call(["say","-v", "Daniel",f"{data["ans"][i]}"])
 
 
-     elif "jarvis" in text.lower()  and "understand"  in text.lower() :
+
+     elif  "understand"  in text.lower() :
              learn_fun()
 
      else :
-            subprocess.call(["say","-v","Daniel", f"{data["IDK"][random.randint(0,2)]["tell"]}"])
-            print(f"{data["IDK"][random.randint(0,2)]["tell"]}")
+            say_1=data["IDK"][random.randint(0,2)]["tell"]
+            subprocess.call(["say","-v","Daniel", f"{say_1}"])
+            print(f"{say_1}")
 def activate():
  with open("r.json","r") as f:
         data=json.loads(f.read())
