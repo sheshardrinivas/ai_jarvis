@@ -1,24 +1,24 @@
 # ai_jarvis
 jarvis
 
-## Mac os
-|- python -m venv .venv
-|
-|- source .venv/bin/activate
-|
-|- pip install -r requirements.txt
+# Mac os
+python -m venv .venv
 
-## linux
-|-apt upgrade
-|
-|- apt update
-|
-|- apt-get install portaudio19-dev -y
-|
-|- python -m venv .venv
-|
-|- source .venv/bin/activate
-|
-|- pip install -r requirements.txt
-|
-|-In key.py change the keycode for activating the code.
+source .venv/bin/activate
+
+pip install -r requirements.txt
+
+# linux
+pt upgrade
+
+apt update
+
+apt-get install portaudio19-dev -y
+
+python -m venv .venv
+
+source .venv/bin/activate
+
+pip install -r requirements.txt
+
+In key.py change the keycode for activating the code.
