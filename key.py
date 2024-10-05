@@ -52,11 +52,11 @@ def start():
         activate()
     elif counter>=0:
         activate()
-def learn_fun():
-    q_value=question_1_0("should I start the machine learning protocol?",["no","start"])
+def learn_fun(q,a,q1):
+    q_value=question_1_0(q,a)
     if q_value ==1:
         print("ok")
-        learn()
+        learn(q1)
 def detect(text,data):
 
 
@@ -85,22 +85,20 @@ def detect(text,data):
          with open("learn.json", 'r') as file:
             data = json.load(file)
 
+         match_found = False
          for i in range(len(data["questions"])):
-             if text.lower() in data["questions"][i]:
-                 print(data["questions"][i]+":"+data["ans"][i])
-                 subprocess.call(["say","-v", "Daniel","{data['ans'][i]}"])
-             if text.lower() not in data["questions"][i]:
-                 with open("r.json","r") as f:
-                        data2=json.loads(f.read())
-                 say_2=data2["IDK"][3]["tell"]
-                 subprocess.call(["say","-v","Daniel", f"{say_2}{text.lower()}"])
-                 print(f"{say_2}{text.lower()}")
-                 learn_fun()
+             if text.lower() in data["questions"][i].lower():
+                 print(data["questions"][i] + ":" + data["ans"][i])
+                 subprocess.call(["say", "-v", "Daniel", data['ans'][i]])
+                 match_found = True
+                 break  # Exit the loop once a match is found
+
+         if not match_found:
+             print("No matching question found.")
+             subprocess.call(["say", "-v", "Daniel", "No matching question found."])
+             learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
 
 
-
-     elif  "understand"  in text.lower() :
-             learn_fun()
 
      else :
             say_1=data["IDK"][random.randint(0,2)]["tell"]
@@ -110,6 +108,7 @@ def activate():
  with open("r.json","r") as f:
         data=json.loads(f.read())
  playsound("jug-pop-2-186887.mp3")
+ print("wake")
  print("listening.....")
 
  global counter

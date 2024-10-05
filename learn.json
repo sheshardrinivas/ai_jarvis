@@ -1,7 +1,12 @@
 {
-  "questions": ["what is a light bulb", "what is a solar panel"],
+  "questions": [
+    "what is a light bulb",
+    "what is a solar panel",
+    "what is a car"
+  ],
   "ans": [
     "light bulb is a device which emits light",
-    "solar panel is a device which can get the energy from the Sun"
+    "solar panel is a device which can get the energy from the Sun",
+    "car is a mean of transport"
   ]
 }
