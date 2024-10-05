@@ -88,7 +88,7 @@ def detect(text,data):
          for i in range(len(data["questions"])):
              if text.lower() in data["questions"][i]:
                  print(data["questions"][i]+":"+data["ans"][i])
-                 subprocess.call(["say","-v", "Daniel",f"{data["ans"][i]}"])
+                 subprocess.call(["say","-v", "Daniel","{data['ans'][i]}"])
              if text.lower() not in data["questions"][i]:
                  with open("r.json","r") as f:
                         data2=json.loads(f.read())
