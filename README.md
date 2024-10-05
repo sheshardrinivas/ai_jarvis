@@ -1,14 +1,14 @@
 # ai_jarvis
 jarvis
 
-# Mac os
+## Mac os
 python -m venv .venv
 
 source .venv/bin/activate
 
 pip install -r requirements.txt
 
-# linux
+## linux
 apt upgrade
 
 apt update
