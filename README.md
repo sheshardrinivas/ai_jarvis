@@ -9,7 +9,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 # linux
-pt upgrade
+apt upgrade
 
 apt update
 
