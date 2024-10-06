@@ -99,11 +99,19 @@ def detect(text,data):
              subprocess.call(["say", "-v", "Daniel", "No matching question found."])
              learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
      elif "who is" in text.lower():
+
             q=text.lower()
             r=wikipedia.summary(q,10)
-            print(r)
-            subprocess.call(["say", "-v", "Daniel", r])
-
+            if r:
+                print(r)
+                subprocess.call(["say", "-v", "Daniel", r])
+            else:
+                print("No matching person found.")
+                subprocess.call(["say", "-v", "Daniel", "No matching question found."])
+                learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
+     elif "understand" in text.lower():
+                q = text.lower().replace("unserstand", " ")
+                learn_fun("should I start the machine learning protocol?",["no","start"],q)
 
 
 
