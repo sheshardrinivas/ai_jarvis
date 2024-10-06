@@ -10,6 +10,7 @@ from playsound import playsound
 import datetime
 import json
 from def_1 import question_1_0,learn
+import wikipedia
 counter=0
 l=True
 colorama.init(autoreset=True)
@@ -97,6 +98,13 @@ def detect(text,data):
              print("No matching question found.")
              subprocess.call(["say", "-v", "Daniel", "No matching question found."])
              learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
+     elif "who is" in text.lower():
+            q=text.lower()
+            r=wikipedia.summary(q,10)
+            print(r)
+            subprocess.call(["say", "-v", "Daniel", r])
+
+
 
 
 

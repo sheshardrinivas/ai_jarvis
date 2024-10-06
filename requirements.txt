@@ -5,5 +5,5 @@ subprocess.run
 pyflac
 pyaudio
 colorama
-
+wikipedia
 pynput
