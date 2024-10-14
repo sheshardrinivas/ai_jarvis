@@ -94,6 +94,8 @@ def learn_fun(q,a,q1):
     if q_value ==1:
         print("ok")
         learn(q1)
+    if q_value==0:
+        subprocess.call(["say","-v", "Daniel","ok"])
 def detect(text,data):
 
 
@@ -118,36 +120,49 @@ def detect(text,data):
          strtime=datetime.datetime.now().strftime("%H:%M:%S")
          print(f"the time is {strtime}")
          subprocess.call(["say","-v", "Daniel",f"the time is {strtime}"])
-     elif "what is" in text.lower():
+     elif "what" in text.lower():
          with open("learn.json", 'r') as file:
             data = json.load(file)
 
          match_found = False
          for i in range(len(data["questions"])):
              if text.lower() in data["questions"][i].lower():
-                 print(data["questions"][i] + ":" + data["ans"][i])
                  subprocess.call(["say", "-v", "Daniel", data['ans'][i]])
                  match_found = True
-                 break  # Exit the loop once a match is found
+                 break
 
          if not match_found:
              print("No matching question found.")
              subprocess.call(["say", "-v", "Daniel", "No matching question found."])
              learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
-     elif "who is" in text.lower():
+     elif "who" in text.lower():
 
             q=text.lower()
-            r=wikipedia.summary(q,10)
-            if r:
-                print(r)
-                subprocess.call(["say", "-v", "Daniel", r])
+            r1=wikipedia.summary(q,10)
+            if  r1 ==True :
+                print(r1)
+                subprocess.call(["say", "-v", "Daniel", f"{r1}" ])
             else:
-                print("No matching person found.")
-                subprocess.call(["say", "-v", "Daniel", "No matching question found."])
-                learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
-     elif "understand" in text.lower():
+                with open("learn.json", 'r') as file:
+                   data = json.load(file)
+                match_found = False
+                for i in range(len(data["questions"])):
+                    if text.lower() in data["questions"][i].lower():
+                        print(data["questions"][i] + ":" + data["ans"][i])
+                        subprocess.call(["say", "-v", "Daniel", data['ans'][i]])
+                        match_found = True
+                        break
+
+                if not match_found:
+                    print("No matching question found.")
+                    subprocess.call(["say", "-v", "Daniel", "No matching question found."])
+                    learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
+
+
+     elif "understand" in text.lower() or "learn" in text.lower():
                 q = text.lower().replace("unserstand", " ")
-                learn_fun("should I start the machine learning protocol?",["no","start"],q)
+                q = text.lower().replace("learn", " ")
+                learn(q)
 
 
 
@@ -208,13 +223,14 @@ def sleep1():
 
           response=recognition.recognize_google(audio)
           print(response)
-          if "jarvis" in response.lower()  and "wake up" in response.lower():
+          if "jarvis" in response.lower()  and "wake up" in response.lower()  or "wake up" in response.lower() or "jarvis" in response.lower():
               activate()
               break
-          if "jarvis" in response.lower()  and "goodbye" in response.lower():
+          if "jarvis" in response.lower()  and "goodbye" in response.lower() or "goodbye" in response.lower():
               counter=+1
               key_detect()
               break
+
           elif "jarvis" in response.lower()  and   "what is the time" in response.lower() or "jarvis" in response.lower()  and   "what's the time" in response.lower() or  "what's the time" in response.lower() :
               strtime=datetime.datetime.now().strftime("%H:%M:%S")
               print(f"the time is {strtime}")
