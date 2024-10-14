@@ -1,3 +1,5 @@
+from time import sleep
+from urllib.request import UnknownHandler
 from pynput import keyboard
 import pynput
 import speech_recognition as sr
@@ -5,7 +7,7 @@ import subprocess
 import colorama
 import random
 from colorama import Fore
-from webbrowser import open_new
+from webbrowser import Error, open_new
 from playsound import playsound
 import datetime
 import json
@@ -96,6 +98,8 @@ def learn_fun(q,a,q1):
         learn(q1)
     if q_value==0:
         subprocess.call(["say","-v", "Daniel","ok"])
+def has_string(var):
+            return isinstance(var, str)
 def detect(text,data):
 
 
@@ -135,25 +139,25 @@ def detect(text,data):
              print("No matching question found.")
              subprocess.call(["say", "-v", "Daniel", "No matching question found."])
              learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
-     elif "who" in text.lower():
+     elif "how" in text.lower():
+         with open("learn.json", 'r') as file:
+            data = json.load(file)
 
-            q=text.lower()
-            r1=wikipedia.summary(q,10)
-            if  r1 ==True :
-                print(r1)
-                subprocess.call(["say", "-v", "Daniel", f"{r1}" ])
-            else:
-                with open("learn.json", 'r') as file:
-                   data = json.load(file)
-                match_found = False
-                for i in range(len(data["questions"])):
-                    if text.lower() in data["questions"][i].lower():
-                        print(data["questions"][i] + ":" + data["ans"][i])
-                        subprocess.call(["say", "-v", "Daniel", data['ans'][i]])
-                        match_found = True
-                        break
+         match_found = False
+         for i in range(len(data["questions"])):
+             if text.lower() in data["questions"][i].lower():
+                 subprocess.call(["say", "-v", "Daniel", data['ans'][i]])
+                 match_found = True
+                 break
 
-                if not match_found:
+         if not match_found:
+
+                q=text.lower()
+                r1=wikipedia.summary(q,10)
+                if has_string(r1) == True :
+                    print(r1)
+                    subprocess.call(["say", "-v", "Daniel", f"{r1}" ])
+                else:
                     print("No matching question found.")
                     subprocess.call(["say", "-v", "Daniel", "No matching question found."])
                     learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
