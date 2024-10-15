@@ -19,7 +19,7 @@ colorama.init(autoreset=True)
 def start():
 
         current_hour = datetime.datetime.now().hour
-        print(f"The time is {current_hour:02d}:00")
+
         with open("r.json","r") as f:
             data=json.loads(f.read())
         if 5 <= current_hour < 12:
