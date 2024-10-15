@@ -87,7 +87,8 @@ def detect(text,data):
          strtime=datetime.datetime.now().strftime("%H:%M:%S")
          print(f"the time is {strtime}")
          subprocess.call(["say","-v", "Daniel",f"the time is {strtime}"])
-     elif "what" in text.lower():
+
+     elif "how" in text.lower() or "who" in text.lower() or "what" in text.lower() :
          with open("learn.json", 'r') as file:
             data = json.load(file)
 
@@ -97,24 +98,7 @@ def detect(text,data):
                  subprocess.call(["say", "-v", "Daniel", data['ans'][i]])
                  match_found = True
                  break
-
          if not match_found:
-             print("No matching question found.")
-             subprocess.call(["say", "-v", "Daniel", "No matching question found."])
-             learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
-     elif "how" in text.lower():
-         with open("learn.json", 'r') as file:
-            data = json.load(file)
-
-         match_found = False
-         for i in range(len(data["questions"])):
-             if text.lower() in data["questions"][i].lower():
-                 subprocess.call(["say", "-v", "Daniel", data['ans'][i]])
-                 match_found = True
-                 break
-
-         if not match_found:
-
                 q=text.lower()
                 r1=wikipedia.summary(q,10)
                 if has_string(r1) == True :
@@ -124,8 +108,6 @@ def detect(text,data):
                     print("No matching question found.")
                     subprocess.call(["say", "-v", "Daniel", "No matching question found."])
                     learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
-
-
      elif "understand" in text.lower() or "learn" in text.lower():
                 q = text.lower().replace("unserstand", " ")
                 q = text.lower().replace("learn", " ")
@@ -144,9 +126,7 @@ def activate():
  playsound("jug-pop-2-186887.mp3")
  print("wake")
  print("listening.....")
-
  global counter
-
 
  while True:
 
@@ -241,4 +221,4 @@ if __name__ == "__main__":
     try:
         key_detect()
     except KeyboardInterrupt:
-        print("Program terminated.")
+        print("jarvis disabled.")
