@@ -7,3 +7,5 @@ pyaudio
 colorama
 wikipedia
 pynput
+progressbar
+playsound
