@@ -1,5 +1,4 @@
 from time import sleep
-from urllib.request import UnknownHandler
 from pynput import keyboard
 import pynput
 import speech_recognition as sr
@@ -7,7 +6,7 @@ import subprocess
 import colorama
 import random
 from colorama import Fore
-from webbrowser import Error, open_new
+from webbrowser import  open_new
 from playsound import playsound
 import datetime
 import json
