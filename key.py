@@ -17,7 +17,7 @@ counter=0
 l=True
 colorama.init(autoreset=True)
 def start():
-    if counter==0:
+
         current_hour = datetime.datetime.now().hour
         print(f"The time is {current_hour:02d}:00")
         with open("r.json","r") as f:
@@ -53,44 +53,8 @@ def start():
             subprocess.call(["say","-v", "Daniel",f"{t}"])
             subprocess.call(["say","-v", "Daniel",f"{q}"])
         activate()
-    elif counter>=10:
-            current_hour = datetime.datetime.now().hour
-            print(f"The time is {current_hour:02d}:00")
-            with open("r.json","r") as f:
-                data=json.loads(f.read())
-            if 5 <= current_hour < 12:
-                g=data["start"][0]["greeting"]
-                q=data["start"][random.randint(0,2)]["question"]
-                t=data["start"][random.randint(0,2)]["tell"]
-                print(g)
-                print(t)
-                print(q)
-                subprocess.call(["say","-v", "Daniel",f"{g}"])
-                subprocess.call(["say","-v", "Daniel",f"{t}"])
-                subprocess.call(["say","-v", "Daniel",f"{q}"])
-            elif 12 <= current_hour < 18:
-                g=data["start"][1]["greeting"]
-                q=data["start"][random.randint(0,2)]["question"]
-                t=data["start"][random.randint(0,2)]["tell"]
-                print(g)
-                print(t)
-                print(q)
-                subprocess.call(["say","-v", "Daniel",f"{g}"])
-                subprocess.call(["say","-v", "Daniel",f"{t}"])
-                subprocess.call(["say","-v", "Daniel",f"{q}"])
-            elif 18 <= current_hour < 22:
-                g=data["start"][2]["greeting"]
-                q=data["start"][random.randint(0,2)]["question"]
-                t=data["start"][random.randint(0,2)]["tell"]
-                print(g)
-                print(t)
-                print(q)
-                subprocess.call(["say","-v", "Daniel",f"{g}"])
-                subprocess.call(["say","-v", "Daniel",f"{t}"])
-                subprocess.call(["say","-v", "Daniel",f"{q}"])
-            activate()
-    elif counter>=0 and counter <=10:
-        activate()
+
+
 def learn_fun(q,a,q1):
     q_value=question_1_0(q,a)
     if q_value ==1:
