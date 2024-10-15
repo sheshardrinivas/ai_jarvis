@@ -1,5 +1,5 @@
 from time import sleep
-from urllib.request import UnknownHandler
+
 from pynput import keyboard
 import pynput
 import speech_recognition as sr
@@ -168,7 +168,7 @@ def activate():
               if counter >=2:
                   subprocess.call(["say","-v", "Daniel","good bye sir."])
                   print("going to sleep...")
-            
+
                   key_detect()
 def sleep1():
     playsound("notification-sound-7062.mp3")
