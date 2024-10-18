@@ -124,7 +124,7 @@ def activate():
  with open("r.json","r") as f:
         data=json.loads(f.read())
  playsound("jug-pop-2-186887.mp3")
- print("wake")
+ print("awake")
  print("listening.....")
  global counter
 
