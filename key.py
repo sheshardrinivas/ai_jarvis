@@ -65,7 +65,7 @@ def learn_fun(q,a,q1):
         subprocess.call(["say","-v", "Daniel","ok"])
 def has_string(var):
             return isinstance(var, str)
-def detect(text,data):
+def detect(text,data,mode):
 
 
      if "lumos" in text.lower() :
@@ -144,7 +144,7 @@ def activate():
               print("lowercase: ",response2.lower())
 
 
-              detect(text=response2.lower(),data=data)
+              detect(text=response2.lower(),data=data,mode=False)
 
 
              except sr.UnknownValueError:
@@ -194,6 +194,7 @@ def key_detect():
     playsound("notification-sound-7062.mp3")
 
     HOTKEY1 = {keyboard.Key.shift, keyboard.KeyCode(176)}
+    HOTKEY2 = {keyboard.Key.shift, keyboard.Key.ctrl}
 
 
 
@@ -203,8 +204,10 @@ def key_detect():
         current_keys.add(key)
 
         if all(k in current_keys for k in HOTKEY1):
-            print("Hotkey 1 activated!")
+            print("voice assistant mode activated!")
             start()
+        if all(k in current_keys for k in HOTKEY2):
+                print("text mode activated!")
 
     def on_release(key):
         try:
