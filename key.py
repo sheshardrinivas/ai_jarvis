@@ -12,7 +12,6 @@ import datetime
 import json
 from def_1 import question_1_0,learn
 import wikipedia
-import pyautogui
 counter=0
 l=True
 
