@@ -12,8 +12,10 @@ import datetime
 import json
 from def_1 import question_1_0,learn
 import wikipedia
+import pyautogui
 counter=0
 l=True
+HOTKEY2 = {keyboard.Key.ctrl,keyboard.Key.esc}
 colorama.init(autoreset=True)
 def start():
 
@@ -114,8 +116,6 @@ def detect(text,data):
                 learn(q)
 
 
-
-
      else :
             say_1=data["IDK"][random.randint(0,2)]["tell"]
             subprocess.call(["say","-v","Daniel", f"{say_1}"])
@@ -127,7 +127,7 @@ def activate():
  print("awake")
  print("listening.....")
  global counter
-
+ global HOTKEY2
  while True:
 
          with sr.Microphone() as source:
@@ -135,6 +135,8 @@ def activate():
              recognition2.adjust_for_ambient_noise(source)
 
              try:
+
+
 
               audio2=recognition2.listen(source,timeout=False,phrase_time_limit=10)
               response2=recognition2.recognize_google(audio2)
@@ -152,6 +154,7 @@ def activate():
                   print("going to sleep...")
                   counter=+1
                   key_detect()
+
 def sleep1():
     playsound("notification-sound-7062.mp3")
 
@@ -164,6 +167,7 @@ def sleep1():
 
 
       try:
+
 
 
           audio=recognition.listen(source,timeout=False,phrase_time_limit=2)
@@ -186,10 +190,11 @@ def sleep1():
       except sr.UnknownValueError:
          pass
 def key_detect():
+    global HOTKEY2
     playsound("notification-sound-7062.mp3")
 
     HOTKEY1 = {keyboard.Key.shift, keyboard.KeyCode(176)}
-    HOTKEY2 = {keyboard.Key.ctrl,keyboard.Key.esc}
+
 
 
     current_keys = set()
@@ -200,13 +205,9 @@ def key_detect():
         if all(k in current_keys for k in HOTKEY1):
             print("Hotkey 1 activated!")
             start()
+        if all(k in current_keys for k in HOTKEY2):
 
-
-
-
-
-
-
+                 pyautogui.hotkey("ctrl","c")
     def on_release(key):
         try:
             current_keys.remove(key)
