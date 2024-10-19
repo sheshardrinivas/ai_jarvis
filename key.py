@@ -15,7 +15,7 @@ import wikipedia
 import pyautogui
 counter=0
 l=True
-HOTKEY2 = {keyboard.Key.ctrl,keyboard.Key.esc}
+
 colorama.init(autoreset=True)
 def start():
 
@@ -127,7 +127,7 @@ def activate():
  print("awake")
  print("listening.....")
  global counter
- global HOTKEY2
+
  while True:
 
          with sr.Microphone() as source:
@@ -190,7 +190,7 @@ def sleep1():
       except sr.UnknownValueError:
          pass
 def key_detect():
-    global HOTKEY2
+
     playsound("notification-sound-7062.mp3")
 
     HOTKEY1 = {keyboard.Key.shift, keyboard.KeyCode(176)}
@@ -205,9 +205,7 @@ def key_detect():
         if all(k in current_keys for k in HOTKEY1):
             print("Hotkey 1 activated!")
             start()
-        if all(k in current_keys for k in HOTKEY2):
 
-                 pyautogui.hotkey("ctrl","c")
     def on_release(key):
         try:
             current_keys.remove(key)
