@@ -95,13 +95,13 @@ def detect(text,data,mode):
      elif "jarvis" in text.lower()  and "youtube" in text.lower() :
          open_new("https://www.youtube.com")
 
-     elif "jarvis" in text.lower()  and   "what is the time" in text.lower():
+     elif "what is the time" in text.lower() or "what's the time" in text.lower() or "what's the time ?" in text.lower() or  "what is the time ?" in text.lower():
          strtime=datetime.datetime.now().strftime("%H:%M:%S")
          print(f"the time is {strtime}")
          if mode==False:
           subprocess.call(["say","-v", "Daniel",f"the time is {strtime}"])
 
-     elif "how" in text.lower() or "who" in text.lower() or "what" in text.lower() or "where" in text.lower() :
+     elif "how to" in text.lower() or "how" in text.lower() or "who is" in text.lower() or "what is" in text.lower() or "where is" in text.lower() or "what are" in text.lower()  :
          with open("learn.json", 'r') as file:
             data = json.load(file)
 
@@ -181,7 +181,7 @@ def text_mode():
     with open("r.json","r") as f:
            data=json.loads(f.read())
     while True:
-        q=input(f"{Fore.LIGHTWHITE_EX}>>> ")
+        q=input(f"{Fore.WHITE}>>> ")
         q=str(q)
         q=q.lower()
         detect(text=q,data=data,mode=True)
