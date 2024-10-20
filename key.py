@@ -15,7 +15,6 @@ import wikipedia
 mode1=0
 counter=0
 l=True
-
 colorama.init(autoreset=True)
 def start(mode):
 
