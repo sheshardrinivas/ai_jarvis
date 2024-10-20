@@ -137,7 +137,6 @@ def detect(text,data,mode):
                 say_2=data["IDK"][random.randint(0,3)]["tell"]
                 print(f"{say_2}")
                 subprocess.call(["say","-v","Daniel", f"{say_2}"])
-
 def activate():
  with open("r.json","r") as f:
         data=json.loads(f.read())
