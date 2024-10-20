@@ -12,6 +12,7 @@ import datetime
 import json
 from def_1 import question_1_0,learn
 import wikipedia
+mode1=0
 counter=0
 l=True
 
@@ -53,8 +54,6 @@ def start():
             subprocess.call(["say","-v", "Daniel",f"{t}"])
             subprocess.call(["say","-v", "Daniel",f"{q}"])
         activate()
-
-
 def learn_fun(q,a,q1):
     q_value=question_1_0(q,a)
     if q_value ==1:
@@ -68,16 +67,23 @@ def detect(text,data,mode):
 
 
      if "lumos" in text.lower() :
-            subprocess.call(["say","-v", "Daniel","lumos"])
+            if mode==False:
+             subprocess.call(["say","-v", "Daniel","lumos"])
             print(f"{Fore.WHITE}/////"*5)
+            print(f"{Fore.WHITE}lumos")
      elif "imperio" in text.lower() :
-            subprocess.call(["say","-v", "Albert","imperio"])
+            if mode==False:
+             subprocess.call(["say","-v", "Albert","imperio"])
             print(f"{Fore.GREEN}/////"*5)
+            print(f"{Fore.WHITE}imperio")
      elif "wingardium leviosa" in text.lower() :
-            subprocess.call(["say","-v", "Daniel","wingardium leviosa"])
+            if mode==False:
+             subprocess.call(["say","-v", "Daniel","wingardium leviosa"])
             print(f"{Fore.BLUE}/////"*5)
+            print(f"{Fore.WHITE}wingardium leviosa")
      elif "go to sleep" in text.lower() or "sleep" in text.lower() :
-            subprocess.call(["say","-v", "Daniel","going to sleep, if you need any kind help. I am at your service sir."])
+            if mode==False:
+             subprocess.call(["say","-v", "Daniel","going to sleep, if you need any kind help. I am at your service sir."])
             print("going to sleep...")
             sleep1()
 
@@ -87,27 +93,34 @@ def detect(text,data,mode):
      elif "jarvis" in text.lower()  and   "what is the time" in text.lower():
          strtime=datetime.datetime.now().strftime("%H:%M:%S")
          print(f"the time is {strtime}")
-         subprocess.call(["say","-v", "Daniel",f"the time is {strtime}"])
+         if mode==False:
+          subprocess.call(["say","-v", "Daniel",f"the time is {strtime}"])
 
-     elif "how" in text.lower() or "who" in text.lower() or "what" in text.lower() :
+     elif "how" in text.lower() or "who" in text.lower() or "what" in text.lower() or "where" in text.lower() :
          with open("learn.json", 'r') as file:
             data = json.load(file)
 
          match_found = False
          for i in range(len(data["questions"])):
              if text.lower() in data["questions"][i].lower():
-                 subprocess.call(["say", "-v", "Daniel", data['ans'][i]])
+                 if mode==False:
+                  subprocess.call(["say", "-v", "Daniel", data['ans'][i]])
+                 print(data['ans'][i])
                  match_found = True
                  break
          if not match_found:
                 q=text.lower()
                 r1=wikipedia.summary(q,10)
+                r2=wikipedia.summary(q,2)
                 if has_string(r1) == True :
                     print(r1)
-                    subprocess.call(["say", "-v", "Daniel", f"{r1}" ])
+                    if mode==False:
+
+                     subprocess.call(["say", "-v", "Daniel", f"{r2}" ])
                 else:
                     print("No matching question found.")
-                    subprocess.call(["say", "-v", "Daniel", "No matching question found."])
+                    if mode==False:
+                     subprocess.call(["say", "-v", "Daniel", "No matching question found."])
                     learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
      elif "understand" in text.lower() or "learn" in text.lower():
                 q = text.lower().replace("unserstand", " ")
@@ -116,9 +129,15 @@ def detect(text,data,mode):
 
 
      else :
-            say_1=data["IDK"][random.randint(0,2)]["tell"]
-            subprocess.call(["say","-v","Daniel", f"{say_1}"])
-            print(f"{say_1}")
+
+            if mode==True:
+              say_1=data["IDK"][random.randint(0,1)]["tell"]
+              print(f"{say_1}")
+            if mode==False:
+                say_2=data["IDK"][random.randint(0,3)]["tell"]
+                print(f"{say_2}")
+                subprocess.call(["say","-v","Daniel", f"{say_2}"])
+
 def activate():
  with open("r.json","r") as f:
         data=json.loads(f.read())
@@ -153,7 +172,15 @@ def activate():
                   print("going to sleep...")
                   counter=+1
                   key_detect()
-
+def text_mode():
+    playsound("jug-pop-2-186887.mp3")
+    with open("r.json","r") as f:
+           data=json.loads(f.read())
+    while True:
+        q=input(f"{Fore.LIGHTWHITE_EX}>>> ")
+        q=str(q)
+        q=q.lower()
+        detect(text=q,data=data,mode=True)
 def sleep1():
     playsound("notification-sound-7062.mp3")
 
@@ -193,7 +220,7 @@ def key_detect():
     playsound("notification-sound-7062.mp3")
 
     HOTKEY1 = {keyboard.Key.shift, keyboard.KeyCode(176)}
-    HOTKEY2 = {keyboard.Key.shift, keyboard.Key.ctrl}
+    HOTKEY2 = {keyboard.Key.shift, keyboard.Key.ctrl,keyboard.Key.caps_lock}
 
 
 
@@ -207,6 +234,7 @@ def key_detect():
             start()
         if all(k in current_keys for k in HOTKEY2):
                 print("text mode activated!")
+                text_mode()
 
     def on_release(key):
         try:
