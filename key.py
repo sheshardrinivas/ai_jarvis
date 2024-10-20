@@ -177,16 +177,20 @@ def activate():
                   counter=+1
                   key_detect()
 def text_mode():
+    text_histroy=[]
     playsound("jug-pop-2-186887.mp3")
     with open("r.json","r") as f:
            data=json.loads(f.read())
     while True:
-        text_histroy=[]
+
+
         q=input(f"{Fore.WHITE}>>> ")
         q=str(q)
         q=q.lower()
         detect(text=q,data=data,mode=True)
-        text_histroy.append(q)
+        len_=len(text_histroy)
+
+        text_histroy.insert(len_, q)
         print(text_histroy)
 
 def sleep1():
