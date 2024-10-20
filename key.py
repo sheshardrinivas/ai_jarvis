@@ -181,10 +181,14 @@ def text_mode():
     with open("r.json","r") as f:
            data=json.loads(f.read())
     while True:
+        text_histroy=[]
         q=input(f"{Fore.WHITE}>>> ")
         q=str(q)
         q=q.lower()
         detect(text=q,data=data,mode=True)
+        text_histroy.append(q)
+        print(text_histroy)
+
 def sleep1():
     playsound("notification-sound-7062.mp3")
 
