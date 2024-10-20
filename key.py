@@ -17,7 +17,7 @@ counter=0
 l=True
 
 colorama.init(autoreset=True)
-def start():
+def start(mode):
 
         current_hour = datetime.datetime.now().hour
 
@@ -30,9 +30,10 @@ def start():
             print(g)
             print(t)
             print(q)
-            subprocess.call(["say","-v", "Daniel",f"{g}"])
-            subprocess.call(["say","-v", "Daniel",f"{t}"])
-            subprocess.call(["say","-v", "Daniel",f"{q}"])
+            if mode=="voice":
+             subprocess.call(["say","-v", "Daniel",f"{g}"])
+             subprocess.call(["say","-v", "Daniel",f"{t}"])
+             subprocess.call(["say","-v", "Daniel",f"{q}"])
         elif 12 <= current_hour < 18:
             g=data["start"][1]["greeting"]
             q=data["start"][random.randint(0,2)]["question"]
@@ -40,9 +41,10 @@ def start():
             print(g)
             print(t)
             print(q)
-            subprocess.call(["say","-v", "Daniel",f"{g}"])
-            subprocess.call(["say","-v", "Daniel",f"{t}"])
-            subprocess.call(["say","-v", "Daniel",f"{q}"])
+            if mode=="voice":
+                subprocess.call(["say","-v", "Daniel",f"{g}"])
+                subprocess.call(["say","-v", "Daniel",f"{t}"])
+                subprocess.call(["say","-v", "Daniel",f"{q}"])
         elif 18 <= current_hour < 22:
             g=data["start"][2]["greeting"]
             q=data["start"][random.randint(0,2)]["question"]
@@ -50,10 +52,14 @@ def start():
             print(g)
             print(t)
             print(q)
-            subprocess.call(["say","-v", "Daniel",f"{g}"])
-            subprocess.call(["say","-v", "Daniel",f"{t}"])
-            subprocess.call(["say","-v", "Daniel",f"{q}"])
-        activate()
+            if mode=="voice":
+                subprocess.call(["say","-v", "Daniel",f"{g}"])
+                subprocess.call(["say","-v", "Daniel",f"{t}"])
+                subprocess.call(["say","-v", "Daniel",f"{q}"])
+        if mode=="voice":
+         activate()
+        if mode=="text":
+          text_mode()
 def learn_fun(q,a,q1):
     q_value=question_1_0(q,a)
     if q_value ==1:
@@ -230,10 +236,10 @@ def key_detect():
 
         if all(k in current_keys for k in HOTKEY1):
             print("voice assistant mode activated!")
-            start()
+            start(mode="voice")
         if all(k in current_keys for k in HOTKEY2):
                 print("text mode activated!")
-                text_mode()
+                start(mode="text")
 
     def on_release(key):
         try:
