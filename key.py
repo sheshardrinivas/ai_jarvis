@@ -262,4 +262,4 @@ if __name__ == "__main__":
     try:
         key_detect()
     except KeyboardInterrupt:
-        print(">>>")
+        print("")
