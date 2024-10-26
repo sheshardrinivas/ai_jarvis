@@ -232,7 +232,7 @@ def key_detect():
     playsound("notification-sound-7062.mp3")
 
     HOTKEY1 = {keyboard.Key.shift, keyboard.KeyCode(176)}
-    HOTKEY2 = {keyboard.Key.shift, keyboard.Key.ctrl,keyboard.Key.caps_lock}
+    HOTKEY2 = {keyboard.Key.shift, keyboard.Key.ctrl}
 
 
 
