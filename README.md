@@ -3,7 +3,7 @@ jarvis
 
 ## Mac os
 
-make sure that python and homebrew are installed.
+make sure that python and ![homebrew](https://brew.sh) are installed.
 
 open your terminal.
 
