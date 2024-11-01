@@ -1,5 +1,13 @@
-# ai_jarvis
-jarvis
+# A.I J.A.R.V.I.S
+
+J.A.R.V.I.S
+
+
+
+
+## How to use
+
+Follow the commands down, Then press control+shift for text-mode if you want to activate vioce controlled mode press shift+🎙️. the 🎙️ button on mac is the f5 key.
 
 ## Mac os
 
@@ -18,6 +26,9 @@ open your terminal and paste this command in it.
 now just run it by running this command.
 
 5. python key.py
+## How to use
+
+Now press control+shift for text-mode if you want to activate vioce controlled mode press shift+🎙️. The 🎙️ button on mac is the f5 key.
 
 ### optional steps to running jarvis easy:
 
