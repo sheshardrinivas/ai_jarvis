@@ -17,7 +17,7 @@ open your terminal and paste this command in it.
 
 now just run it by running this command.
 
-[python key.py]
+5. python key.py
 
 ### optional steps to running jarvis easy:
 
