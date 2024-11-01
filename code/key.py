@@ -20,7 +20,7 @@ def start(mode):
 
         current_hour = datetime.datetime.now().hour
 
-        with open("r.json","r") as f:
+        with open("jsonfiles/r.json","r") as f:
             data=json.loads(f.read())
         if 5 <= current_hour < 12:
             g=data["start"][0]["greeting"]
@@ -148,9 +148,9 @@ def detect(text,data,mode):
                 print(f"{say_2}")
                 subprocess.call(["say","-v","Daniel", f"{say_2}"])
 def activate():
- with open("r.json","r") as f:
+ with open("jsonfiles/r.json","r") as f:
         data=json.loads(f.read())
- playsound("jug-pop-2-186887.mp3")
+ playsound("sounds/jug-pop-2-186887.mp3")
  print("awake")
  print("listening.....")
  global counter
@@ -184,7 +184,7 @@ def activate():
 def text_mode():
     text_histroy=[]
     playsound("jug-pop-2-186887.mp3")
-    with open("r.json","r") as f:
+    with open("jsonfiles/r.json","r") as f:
            data=json.loads(f.read())
     while True:
 
@@ -199,7 +199,7 @@ def text_mode():
         print(text_histroy)
 
 def sleep1():
-    playsound("notification-sound-7062.mp3")
+    playsound("sounds/notification-sound-7062.mp3")
 
     print("listening.....")
 
@@ -234,7 +234,7 @@ def sleep1():
          pass
 def key_detect():
 
-    playsound("notification-sound-7062.mp3")
+    playsound("sounds/notification-sound-7062.mp3")
 
     HOTKEY1 = {keyboard.Key.shift, keyboard.KeyCode(176)}
     HOTKEY2 = {keyboard.Key.shift, keyboard.Key.ctrl}
