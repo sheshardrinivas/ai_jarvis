@@ -93,7 +93,9 @@ def detect(text,data,mode):
             sleep1()
 
      elif "jarvis" in text.lower()  and "youtube" in text.lower() :
-         open_new("https://www.youtube.com")
+
+           open_new("https://www.youtube.com")
+
 
      elif "what is the time" in text.lower() or "what's the time" in text.lower() or "what's the time ?" in text.lower() or  "what is the time ?" in text.lower():
          strtime=datetime.datetime.now().strftime("%H:%M:%S")
@@ -114,14 +116,17 @@ def detect(text,data,mode):
                  match_found = True
                  break
          if not match_found:
-                q=text.lower()
-                r1=wikipedia.summary(q,10)
-                r2=wikipedia.summary(q,2)
-                if has_string(r1) == True :
-                    print(r1)
-                    if mode==False:
+                try:
+                    q=text.lower()
+                    r1=wikipedia.summary(q,10)
+                    r2=wikipedia.summary(q,2)
+                    if has_string(r1) == True :
+                        print(r1)
+                        if mode==False:
 
-                     subprocess.call(["say", "-v", "Daniel", f"{r2}" ])
+                          subprocess.call(["say", "-v", "Daniel", f"{r2}" ])
+                except:
+                    print("check if your are connected to the internet .")
                 else:
                     print("No matching question found.")
                     if mode==False:
