@@ -5,19 +5,19 @@ jarvis
 
 Make sure that [Python](https://www.python.org) and [Homebrew](https://brew.sh) are installed.
 
-open your terminal.
+open your terminal and paste this command in it.
 
-brew install portaudio
+1. brew install portaudio
 
-cd ~/documents
+2. cd ~/documents
 
-git clone https://github.com/sheshadarinivas/ai_jarvis.git
+3. git clone https://github.com/sheshadarinivas/ai_jarvis.git
 
-pip install -r requirements.txt
+4. pip install -r requirements.txt
 
 now just run it by running this command.
 
-python key.py
+[python key.py]
 
 ### optional steps to running jarvis easy:
 
