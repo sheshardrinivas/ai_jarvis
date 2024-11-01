@@ -11,7 +11,7 @@ brew install portaudio
 
 cd ~/documents
 
-git clone https://github.com/sheshadarinivas/ai_jarvis
+git clone https://github.com/sheshadarinivas/ai_jarvis.git
 
 pip install -r requirements.txt
 
