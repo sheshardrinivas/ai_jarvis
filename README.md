@@ -3,7 +3,7 @@ jarvis
 
 ## Mac os
 
-Make sure that Python and [Homebrew](https://brew.sh) are installed.
+Make sure that [Python](https://www.python.org) and [Homebrew](https://brew.sh) are installed.
 
 open your terminal.
 
@@ -34,3 +34,13 @@ now press control+x , y , enter.
 restart your terminal and paste this command.
 
 source ~/.zshrc
+
+
+
+# My Project
+
+## Copy Badge Example
+
+<a href="#" onclick="navigator.clipboard.writeText('This is the text to copy'); return false;">
+    ![Copy Badge](https://img.shields.io/badge/copy-Click%20to%20copy-brightgreen)
+</a>
