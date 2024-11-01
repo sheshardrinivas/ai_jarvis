@@ -26,11 +26,29 @@ open your terminal and paste this command in it.
 now just run it by running this command.
 
 5. python key.py
-## How to use
+
+
+
+
+
+
+
+
+
+## How to use :
 
 Now press control+shift for text-mode if you want to activate vioce controlled mode press shift+🎙️. The 🎙️ button on mac is the f5 key.
 
-### optional steps to running jarvis easy:
+
+
+
+
+
+
+
+
+
+## optional steps :
 
 open your ~/.zshrc file with nano.
 
