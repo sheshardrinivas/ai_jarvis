@@ -33,7 +33,7 @@ def question_1_0(q,ans):
             return 404
 def learn(q):
     try:
-        with open(path_data+"json files/learn.json", 'r') as file:
+        with open(path_data+"/json files/learn.json", 'r') as file:
             data = json.load(file)
     except FileNotFoundError:
         data = {"questions": [], "ans": []}
@@ -57,7 +57,7 @@ def learn(q):
                     print(q,":",ans)
                     data["questions"].append(q)
                     data["ans"].append(ans)
-                    with open(path_data+"json files/learn.json", 'w') as file:
+                    with open(path_data+"/json files/learn.json", 'w') as file:
                         json.dump(data, file, indent=2)
                     bar = progressbar.ProgressBar(maxval=100, widgets=[progressbar.Bar('>', '[', ']'), ' ', progressbar.Percentage()])
                     bar.start()

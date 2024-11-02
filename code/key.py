@@ -5,6 +5,7 @@ import speech_recognition as sr
 import subprocess
 import colorama
 import random
+import os
 from colorama import Fore
 from webbrowser import  open_new
 from playsound import playsound
@@ -15,15 +16,17 @@ import wikipedia
 mode1=0
 counter=0
 l=True
-with open("json files/export.json", 'r') as file:
-    path_data = json.load(file)
-path_location=path_data["exports"]
+
+current_file_path = os.path.abspath(__file__)
+
+current_dir = os.path.dirname(current_file_path)
+path_location=current_dir.replace("code","")
 colorama.init(autoreset=True)
 def start(mode):
 
         current_hour = datetime.datetime.now().hour
 
-        with open("json files/r.json","r") as f:
+        with open(path_location+"/json files/r.json","r") as f:
             data=json.loads(f.read())
         if 5 <= current_hour < 12:
             g=data["start"][0]["greeting"]
@@ -107,7 +110,7 @@ def detect(text,data,mode):
           subprocess.call(["say","-v", "Daniel",f"the time is {strtime}"])
 
      elif "how to" in text.lower() or "how" in text.lower() or "who is" in text.lower() or "what is" in text.lower() or "where is" in text.lower() or "what are" in text.lower()  :
-         with open(path_location+"json files/learn.json", 'r') as file:
+         with open(path_location+"/json files/learn.json", 'r') as file:
             data = json.load(file)
 
          match_found = False
@@ -151,9 +154,9 @@ def detect(text,data,mode):
                 print(f"{say_2}")
                 subprocess.call(["say","-v","Daniel", f"{say_2}"])
 def activate():
- with open(path_location+"json files/r.json","r") as f:
+ with open(path_location+"/json files/r.json","r") as f:
         data=json.loads(f.read())
- playsound(path_location+"sounds/jug-pop-2-186887.mp3")
+ playsound(path_location+"/sounds/jug-pop-2-186887.mp3")
  print("awake")
  print("listening.....")
  global counter
@@ -186,8 +189,8 @@ def activate():
                   key_detect()
 def text_mode():
     text_histroy=[]
-    playsound(path_location+"sounds/jug-pop-2-186887.mp3")
-    with open(path_location+"json files/r.json","r") as f:
+    playsound(path_location+"/sounds/jug-pop-2-186887.mp3")
+    with open(path_location+"/json files/r.json","r") as f:
            data=json.loads(f.read())
     while True:
 
@@ -202,7 +205,7 @@ def text_mode():
         print(text_histroy)
 
 def sleep1():
-    playsound(path_location+"sounds/notification-sound-7062.mp3")
+    playsound(path_location+"/sounds/notification-sound-7062.mp3")
 
     print("listening.....")
 
@@ -239,7 +242,7 @@ def key_detect():
 
     playsound(path_location+"sounds/notification-sound-7062.mp3")
 
-    HOTKEY1 = {keyboard.Key.shift, keyboard.KeyCode(176)}
+    HOTKEY1 = {keyboard.Key.shift, keyboard.Key.f10}
     HOTKEY2 = {keyboard.Key.shift, keyboard.Key.ctrl}
 
 
@@ -268,6 +271,7 @@ def key_detect():
         listener.join()
 if __name__ == "__main__":
     try:
+        print(path_location)
         key_detect()
     except KeyboardInterrupt:
         print("")

@@ -10,3 +10,5 @@ pynput
 progressbar
 playsound
 datetime
+os
+typing
