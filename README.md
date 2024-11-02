@@ -56,7 +56,7 @@ nano ~/.zshrc
 
 and paste this command.
 
-alias jarvis="python ~/documents/ai_jarvis/key.py"
+alias jarvis="python ~/documents/ai_jarvis/code/key.py"
 
 now press control+x , y , enter.
 
