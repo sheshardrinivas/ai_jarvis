@@ -15,6 +15,7 @@ import wikipedia
 mode1=0
 counter=0
 l=True
+path_location="/Users/macbook/Documents/GitHub/ai_jarvis/"
 colorama.init(autoreset=True)
 def start(mode):
 
@@ -104,7 +105,7 @@ def detect(text,data,mode):
           subprocess.call(["say","-v", "Daniel",f"the time is {strtime}"])
 
      elif "how to" in text.lower() or "how" in text.lower() or "who is" in text.lower() or "what is" in text.lower() or "where is" in text.lower() or "what are" in text.lower()  :
-         with open("learn.json", 'r') as file:
+         with open(path_location+"jsonfiles/learn.json", 'r') as file:
             data = json.load(file)
 
          match_found = False
@@ -148,9 +149,9 @@ def detect(text,data,mode):
                 print(f"{say_2}")
                 subprocess.call(["say","-v","Daniel", f"{say_2}"])
 def activate():
- with open("jsonfiles/r.json","r") as f:
+ with open(path_location+"jsonfiles/r.json","r") as f:
         data=json.loads(f.read())
- playsound("sounds/jug-pop-2-186887.mp3")
+ playsound(path_location+"sounds/jug-pop-2-186887.mp3")
  print("awake")
  print("listening.....")
  global counter
@@ -183,8 +184,8 @@ def activate():
                   key_detect()
 def text_mode():
     text_histroy=[]
-    playsound("jug-pop-2-186887.mp3")
-    with open("jsonfiles/r.json","r") as f:
+    playsound(path_location+"sounds/jug-pop-2-186887.mp3")
+    with open(path_location+"jsonfiles/r.json","r") as f:
            data=json.loads(f.read())
     while True:
 
@@ -199,7 +200,7 @@ def text_mode():
         print(text_histroy)
 
 def sleep1():
-    playsound("sounds/notification-sound-7062.mp3")
+    playsound(path_location+"sounds/notification-sound-7062.mp3")
 
     print("listening.....")
 
@@ -234,7 +235,7 @@ def sleep1():
          pass
 def key_detect():
 
-    playsound("sounds/notification-sound-7062.mp3")
+    playsound(path_location+"sounds/notification-sound-7062.mp3")
 
     HOTKEY1 = {keyboard.Key.shift, keyboard.KeyCode(176)}
     HOTKEY2 = {keyboard.Key.shift, keyboard.Key.ctrl}
