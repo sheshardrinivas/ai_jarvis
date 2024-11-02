@@ -1,3 +1,5 @@
 {
-  "exports": []
+  "exports": "/Users/macbook/Documents/GitHub/ai_jarvis",
+  "keybindings_text_mode": ["shift", "control"],
+  "keybindings_voice_mode": ["shift", 176]
 }
