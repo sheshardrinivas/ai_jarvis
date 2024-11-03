@@ -1,7 +1,5 @@
-
 import os
 import json
-from webbrowser import Error
 import colorama
 import time
 import progressbar
