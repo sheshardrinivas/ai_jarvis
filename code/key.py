@@ -242,7 +242,7 @@ def key_detect():
 
     playsound(path_location+"sounds/notification-sound-7062.mp3")
 
-    HOTKEY1 = {keyboard.Key.shift, keyboard.Key.f10}
+    HOTKEY1 = {keyboard.Key.shift, keyboard.Key.f1}
     HOTKEY2 = {keyboard.Key.shift, keyboard.Key.ctrl}
 
 
@@ -258,6 +258,7 @@ def key_detect():
         if all(k in current_keys for k in HOTKEY2):
                 print("text mode activated!")
                 start(mode="text")
+
 
     def on_release(key):
         try:
