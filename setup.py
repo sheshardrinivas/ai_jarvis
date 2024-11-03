@@ -1,7 +1,7 @@
 import os
 import json
 import colorama
-
+import time
 
 
 
@@ -18,11 +18,21 @@ def main():
         with open(current_dir+"/json files/config.json", 'r') as file:
            key_bind = json.load(file)
         in1=input(f"{colorama.Fore.GREEN}Do need help --->  ")
+        print("__")
         if "y" in in1:
-            print("keys  : [shift , control , option , command , tab , delete , capslock , escape , enter , end , home]")
+            string_="keys  : [shift , control , option , command , tab , delete , capslock , escape , enter , end , home]"
+            for i in range(len(string_)):
+                print(string_[i],end="")
+                time.sleep(0.03)
+            print("__")
 
 
-        keyboard_binding_in1=input(f"{colorama.Fore.GREEN}which keys should be used for activate the text mode . right the key name with a comma . example:control,shift. --->  ")
+        string_1="which keys should be used for activating the text mode . type the key name with a comma . example:control,shift."
+        for i in range(len(string_1)):
+            print(f"{colorama.Fore.GREEN}{string_1[i]}",end="")
+            time.sleep(0.02)
+
+        keyboard_binding_in1=input(f"{colorama.Fore.GREEN} --->  ")
         short_key1=keyboard_binding_in1.split(",")
         print(key_bind["key_binding1"])
         print(f"{colorama.Fore.WHITE}{short_key1[0],short_key1[1]}")
@@ -35,7 +45,13 @@ def main():
         with open(current_dir+"/json files/config.json", 'w') as file:
             json.dump(key_bind, file)
 
-        keyboard_binding_in2=input(f"{colorama.Fore.GREEN}which keys should be used for activate the voice mode . right the key name with a comma . example: shift,f1 . --->  ")
+        string_2="which keys should be used for activating the voice mode . type the key name with a comma . example: shift,f1."
+        for i in range(len(string_2)):
+            print(f"{colorama.Fore.BLUE}{string_2[i]}",end="")
+            time.sleep(0.02)
+
+
+        keyboard_binding_in2=input(f"{colorama.Fore.BLUE} --->  ")
         short_key2=keyboard_binding_in2.split(",")
         print(key_bind["key_binding2"])
         print(f"{colorama.Fore.WHITE}{short_key2[0],short_key2[1]}")
