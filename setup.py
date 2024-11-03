@@ -41,14 +41,14 @@ def main():
         print("__")
         if "y" in in1:
             string_0="keys  : [shift , control , option , command , tab , delete , capslock , escape , enter , end , home , f1 , f2 , f3 ,f4 , f5 , f6 , f7 , f8 , f9 , f10 , f11 , f12]"
-            string_print(string_0,0.04,colorama.Fore.GREEN)
+            string_print(string_0,0.02,colorama.Fore.GREEN)
         print("  ")
         print("  ")
 
 
         try:
             string_1="which keys should be used for activating the text mode . type the key name with a comma . example:control,shift.  ---> "
-            string_print(string_1,0.05,colorama.Fore.GREEN)
+            string_print(string_1,0.04,colorama.Fore.GREEN)
 
             keyboard_binding_in1=input(f"{colorama.Fore.BLUE} ")
 
@@ -65,7 +65,7 @@ def main():
 #voice
             print("  ")
             string_2="which keys should be used for activating the voice mode . type the key name with a comma . example: shift,f1.  ---> "
-            string_print(string_2,0.05,colorama.Fore.BLUE)
+            string_print(string_2,0.04,colorama.Fore.BLUE)
             keyboard_binding_in2=input(f"{colorama.Fore.MAGENTA} ")
 
             short_key2=keyboard_binding_in2.split(",")
@@ -89,7 +89,7 @@ def main():
             print(" ")
             if  "y" in in_fail:
                 string_print("Restarting...",0.02,colorama.Fore.GREEN)
-                bar = progressbar.ProgressBar(maxval=100, widgets=[progressbar.Bar('>', '[', ']'), ' ', progressbar.Percentage()])
+                bar = progressbar.ProgressBar(maxval=100, widgets=[progressbar.Bar('#', '', ''), ' ', progressbar.Percentage()])
                 bar.start()
 
                 for i in range(100):
