@@ -35,8 +35,11 @@ def start(mode):
             q=data["start"][random.randint(0,2)]["question"]
             t=data["start"][random.randint(0,2)]["tell"]
             string_print(g,0.02,"")
+            print(" ")
             string_print(t,0.02,"")
+            print(" ")
             string_print(q,0.02,"")
+            print(" ")
             if mode=="voice":
              subprocess.call(["say","-v", "Daniel",f"{g}"])
              subprocess.call(["say","-v", "Daniel",f"{t}"])
@@ -46,8 +49,11 @@ def start(mode):
             q=data["start"][random.randint(0,2)]["question"]
             t=data["start"][random.randint(0,2)]["tell"]
             string_print(g,0.02,"")
+            print(" ")
             string_print(t,0.02,"")
+            print(" ")
             string_print(q,0.02,"")
+            print(" ")
             if mode=="voice":
                 subprocess.call(["say","-v", "Daniel",f"{g}"])
                 subprocess.call(["say","-v", "Daniel",f"{t}"])
@@ -57,8 +63,11 @@ def start(mode):
             q=data["start"][random.randint(0,2)]["question"]
             t=data["start"][random.randint(0,2)]["tell"]
             string_print(g,0.02,"")
+            print(" ")
             string_print(t,0.02,"")
+            print(" ")
             string_print(q,0.02,"")
+            print(" ")
             if mode=="voice":
                 subprocess.call(["say","-v", "Daniel",f"{g}"])
                 subprocess.call(["say","-v", "Daniel",f"{t}"])
@@ -218,10 +227,9 @@ def text_mode():
         q=str(q)
         q=q.lower()
         detect(text=q,data=data,mode=True)
-        len_=len(text_histroy)
 
-        text_histroy.insert(len_, q)
-        print(text_histroy)
+
+
 
 def sleep1():
     playsound(path_location+"/sounds/notification-sound-7062.mp3")
