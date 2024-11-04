@@ -6,7 +6,7 @@ current_file_path = os.path.abspath(__file__)
 current_dir = os.path.dirname(current_file_path)
 
 
-check_list=["delete","command","option","escape","capslock","f1","f2","f3","f4","f5","f6","f7","f8","f9","f10","f11","f12"]
+check_list=["delete","command","option","escape","capslock"]
 with open(current_dir+"/json files/config.json", 'r') as file:
   key_list = json.load(file)
 
