@@ -7,7 +7,7 @@ import colorama
 import random
 import os
 from colorama import Fore
-from webbrowser import  open_new
+from webbrowser import  Error, open_new
 from playsound import playsound
 import datetime
 import json
@@ -16,12 +16,14 @@ import wikipedia
 mode1=0
 counter=0
 l=True
-
+from key_decoder import key_value,string_print
 current_file_path = os.path.abspath(__file__)
 
 current_dir = os.path.dirname(current_file_path)
 path_location=current_dir.replace("code","")
 colorama.init(autoreset=True)
+with open(path_location+"/json files/config.json","r") as f:
+    keybinders=json.loads(f.read())
 def start(mode):
 
         current_hour = datetime.datetime.now().hour
@@ -32,9 +34,9 @@ def start(mode):
             g=data["start"][0]["greeting"]
             q=data["start"][random.randint(0,2)]["question"]
             t=data["start"][random.randint(0,2)]["tell"]
-            print(g)
-            print(t)
-            print(q)
+            string_print(g,0.02,"")
+            string_print(t,0.02,"")
+            string_print(q,0.02,"")
             if mode=="voice":
              subprocess.call(["say","-v", "Daniel",f"{g}"])
              subprocess.call(["say","-v", "Daniel",f"{t}"])
@@ -43,9 +45,9 @@ def start(mode):
             g=data["start"][1]["greeting"]
             q=data["start"][random.randint(0,2)]["question"]
             t=data["start"][random.randint(0,2)]["tell"]
-            print(g)
-            print(t)
-            print(q)
+            string_print(g,0.02,"")
+            string_print(t,0.02,"")
+            string_print(q,0.02,"")
             if mode=="voice":
                 subprocess.call(["say","-v", "Daniel",f"{g}"])
                 subprocess.call(["say","-v", "Daniel",f"{t}"])
@@ -54,9 +56,9 @@ def start(mode):
             g=data["start"][2]["greeting"]
             q=data["start"][random.randint(0,2)]["question"]
             t=data["start"][random.randint(0,2)]["tell"]
-            print(g)
-            print(t)
-            print(q)
+            string_print(g,0.02,"")
+            string_print(t,0.02,"")
+            string_print(q,0.02,"")
             if mode=="voice":
                 subprocess.call(["say","-v", "Daniel",f"{g}"])
                 subprocess.call(["say","-v", "Daniel",f"{t}"])
@@ -68,7 +70,7 @@ def start(mode):
 def learn_fun(q,a,q1):
     q_value=question_1_0(q,a)
     if q_value ==1:
-        print("ok")
+        string_print("ok",0.01,"")
         learn(q1)
     if q_value==0:
         subprocess.call(["say","-v", "Daniel","ok"])
@@ -80,22 +82,32 @@ def detect(text,data,mode):
      if "lumos" in text.lower() :
             if mode==False:
              subprocess.call(["say","-v", "Daniel","lumos"])
-            print(f"{Fore.WHITE}/////"*5)
-            print(f"{Fore.WHITE}lumos")
+            print("")
+            string_print("/////"*5,0.02,Fore.WHITE)
+            print("")
+            string_print("lumos",0.02,Fore.WHITE)
+     elif "clear" in text.lower():
+             print('\033c', end='')
+             text_mode()
      elif "imperio" in text.lower() :
             if mode==False:
              subprocess.call(["say","-v", "Albert","imperio"])
-            print(f"{Fore.GREEN}/////"*5)
-            print(f"{Fore.WHITE}imperio")
+            print("")
+            string_print("/////"*5,0.01,Fore.GREEN)
+            print("")
+            string_print("imperio",0.01,Fore.WHITE)
      elif "wingardium leviosa" in text.lower() :
             if mode==False:
              subprocess.call(["say","-v", "Daniel","wingardium leviosa"])
-            print(f"{Fore.BLUE}/////"*5)
-            print(f"{Fore.WHITE}wingardium leviosa")
+            print("")
+            string_print("/////"*5,0.02,Fore.BLUE)
+            print("")
+            string_print("wingardium leviosa",0.02,Fore.WHITE)
      elif "go to sleep" in text.lower() or "sleep" in text.lower() :
             if mode==False:
              subprocess.call(["say","-v", "Daniel","going to sleep, if you need any kind help. I am at your service sir."])
-            print("going to sleep...")
+            print("")
+            string_print("going to sleep...",0.01,Fore.WHITE)
             sleep1()
 
      elif "jarvis" in text.lower()  and "youtube" in text.lower() :
@@ -105,7 +117,8 @@ def detect(text,data,mode):
 
      elif "what is the time" in text.lower() or "what's the time" in text.lower() or "what's the time ?" in text.lower() or  "what is the time ?" in text.lower():
          strtime=datetime.datetime.now().strftime("%H:%M:%S")
-         print(f"the time is {strtime}")
+         print("")
+         string_print(f"the time is {strtime}",0.02,Fore.WHITE)
          if mode==False:
           subprocess.call(["say","-v", "Daniel",f"the time is {strtime}"])
 
@@ -117,8 +130,9 @@ def detect(text,data,mode):
          for i in range(len(data["questions"])):
              if text.lower() in data["questions"][i].lower():
                  if mode==False:
-                  subprocess.call(["say", "-v", "Daniel", data['ans'][i]])
-                 print(data['ans'][i])
+                       subprocess.call(["say", "-v", "Daniel", data['ans'][i]])
+                 print("")
+                 string_print(data['ans'][i],0.02,Fore.BLUE)
                  match_found = True
                  break
          if not match_found:
@@ -127,14 +141,19 @@ def detect(text,data,mode):
                     r1=wikipedia.summary(q,10)
                     r2=wikipedia.summary(q,2)
                     if has_string(r1) == True :
-                        print(r1)
-                        if mode==False:
+                            print("")
+                            string_print(r1,0.02,Fore.BLUE)
+                            if mode==False:
 
-                          subprocess.call(["say", "-v", "Daniel", f"{r2}" ])
+                                subprocess.call(["say", "-v", "Daniel", f"{r2}" ])
+
                 except:
-                    print("check if your are connected to the internet .")
+                  print("")
+                  string_print("Error:missing value",0.02,{Fore.RED})
+
                 else:
-                    print("No matching question found.")
+                    print("")
+                    string_print("No matching question found.",0.02,{Fore.RED})
                     if mode==False:
                      subprocess.call(["say", "-v", "Daniel", "No matching question found."])
                     learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
@@ -157,8 +176,8 @@ def activate():
  with open(path_location+"/json files/r.json","r") as f:
         data=json.loads(f.read())
  playsound(path_location+"/sounds/jug-pop-2-186887.mp3")
- print("awake")
- print("listening.....")
+
+ string_print("listening.....",0.02,Fore.GREEN)
  global counter
 
  while True:
@@ -194,8 +213,8 @@ def text_mode():
            data=json.loads(f.read())
     while True:
 
-
-        q=input(f"{Fore.WHITE}>>> ")
+        string_print(">>>",0.02,Fore.WHITE)
+        q=input(" ")
         q=str(q)
         q=q.lower()
         detect(text=q,data=data,mode=True)
@@ -206,8 +225,8 @@ def text_mode():
 
 def sleep1():
     playsound(path_location+"/sounds/notification-sound-7062.mp3")
-
-    print("listening.....")
+    print(" ")
+    string_print("listening.....",0.02,Fore.GREEN)
 
     while True:
      with sr.Microphone() as source:
@@ -242,8 +261,8 @@ def key_detect():
 
     playsound(path_location+"sounds/notification-sound-7062.mp3")
 
-    HOTKEY1 = {keyboard.Key.shift, keyboard.Key.f1}
-    HOTKEY2 = {keyboard.Key.shift, keyboard.Key.ctrl}
+    HOTKEY1 = {key_value[keybinders["key_binding2"][0]],key_value[keybinders["key_binding2"][1]]}
+    HOTKEY2 = {key_value[keybinders["key_binding1"][0]],key_value[keybinders["key_binding1"][1]]}
 
 
 
