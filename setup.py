@@ -32,8 +32,8 @@ def main():
         print("  ")
 
 
-        with open(current_dir+"/json files/config.json", 'r') as file:
-           key_bind = json.load(file)
+        with open(current_dir+'/json files/config.json', 'r') as file:
+            key_bind = json.load(file)
 
 
         string_print("Do need help --->",0.01,colorama.Fore.MAGENTA)
