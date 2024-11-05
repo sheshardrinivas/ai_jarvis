@@ -13,6 +13,20 @@ import datetime
 import json
 from def_1 import question_1_0,learn
 import wikipedia
+import requests
+import sys
+import os
+
+def is_connected():
+    try:
+        requests.head('https://www.google.com', timeout=1)
+        return True
+    except requests.RequestException:
+        return False
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from setup import main
+
 mode1=0
 counter=0
 l=True
@@ -141,7 +155,7 @@ def detect(text,data,mode):
                  if mode==False:
                        subprocess.call(["say", "-v", "Daniel", data['ans'][i]])
                  print("")
-                 string_print(data['ans'][i],0.02,Fore.BLUE)
+                 string_print(data['ans'][i]+"f",0.02,Fore.BLUE)
                  match_found = True
                  break
          if not match_found:
@@ -150,22 +164,30 @@ def detect(text,data,mode):
                     r1=wikipedia.summary(q,10)
                     r2=wikipedia.summary(q,2)
                     if has_string(r1) == True :
+
+
+
                             print("")
                             string_print(r1,0.02,Fore.BLUE)
                             if mode==False:
 
                                 subprocess.call(["say", "-v", "Daniel", f"{r2}" ])
+                    else:
+                        print("")
+                        print("No matching question found.")
+                        if mode==False:
+                            subprocess.call(["say", "-v", "Daniel", "No matching question found."])
+                        learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
 
                 except:
-                  print("")
-                  string_print("Error:missing value",0.02,{Fore.RED})
+                    if is_connected ==True:
+                        print("")
+                        string_print("Error:missing value",0.02,Fore.RED)
+                    else:
+                        print("")
+                        string_print("check if your are conected to the internet 🛜",0.02,Fore.RED)
 
-                else:
-                    print("")
-                    string_print("No matching question found.",0.02,{Fore.RED})
-                    if mode==False:
-                     subprocess.call(["say", "-v", "Daniel", "No matching question found."])
-                    learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
+
      elif "understand" in text.lower() or "learn" in text.lower():
                 q = text.lower().replace("unserstand", " ")
                 q = text.lower().replace("learn", " ")
@@ -221,7 +243,7 @@ def text_mode():
     with open(path_location+"/json files/r.json","r") as f:
            data=json.loads(f.read())
     while True:
-
+        print("")
         string_print(">>>",0.02,Fore.WHITE)
         q=input(" ")
         q=str(q)
@@ -267,36 +289,51 @@ def sleep1():
          pass
 def key_detect():
 
-    playsound(path_location+"sounds/notification-sound-7062.mp3")
 
-    HOTKEY1 = {key_value[keybinders["key_binding2"][0]],key_value[keybinders["key_binding2"][1]]}
-    HOTKEY2 = {key_value[keybinders["key_binding1"][0]],key_value[keybinders["key_binding1"][1]]}
-
-
-
-    current_keys = set()
-
-    def on_press(key):
-        current_keys.add(key)
-
-        if all(k in current_keys for k in HOTKEY1):
-            print("voice assistant mode activated!")
-            start(mode="voice")
-        if all(k in current_keys for k in HOTKEY2):
-                print("text mode activated!")
-                start(mode="text")
+    try:
+        playsound(path_location+"sounds/notification-sound-7062.mp3")
+        HOTKEY1 = {key_value[keybinders["key_binding2"][0]],key_value[keybinders["key_binding2"][1]]}
+        HOTKEY2 = {key_value[keybinders["key_binding1"][0]],key_value[keybinders["key_binding1"][1]]}
 
 
-    def on_release(key):
-        try:
-            current_keys.remove(key)
-        except KeyError:
-            pass
 
 
-    with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
-        print("listening for key press .....")
-        listener.join()
+
+        current_keys = set()
+
+        def on_press(key):
+            current_keys.add(key)
+
+            if all(k in current_keys for k in HOTKEY1):
+                print("voice assistant mode activated!")
+                start(mode="voice")
+            if all(k in current_keys for k in HOTKEY2):
+                    print("text mode activated!")
+                    start(mode="text")
+
+
+        def on_release(key):
+            try:
+                current_keys.remove(key)
+            except KeyError:
+                pass
+
+
+        with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
+            print("listening for key press .....")
+            listener.join()
+    except KeyError:
+        string_print("ERROR",0.02,Fore.RED)
+        string_print(" : ",0.02,Fore.LIGHTYELLOW_EX)
+        string_print("key mapping failed",0.02,Fore.YELLOW)
+        print(" ")
+        string_print("Try remapping the keys by running setup.py ",0.02,Fore.RED)
+        print(" ")
+        string_print("Do you want remap the key. if yes type y. -->",0.02,Fore.RED)
+        in_1=input(" ")
+        print(" ")
+        if "y" in in_1:
+            main()
 if __name__ == "__main__":
     try:
         print(path_location)
