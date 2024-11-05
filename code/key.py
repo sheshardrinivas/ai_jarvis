@@ -329,7 +329,7 @@ def key_detect():
         print(" ")
         string_print("Try remapping the keys by running setup.py ",0.02,Fore.RED)
         print(" ")
-        string_print("Do you want remap the key. if yes type y. -->",0.02,Fore.RED)
+        string_print("Do you want remap the keys if yes type y. -->",0.02,Fore.RED)
         in_1=input(" ")
         print(" ")
         if "y" in in_1:
