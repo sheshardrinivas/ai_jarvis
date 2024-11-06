@@ -183,6 +183,12 @@ def detect(text,data,mode):
                     if is_connected ==True:
                         print("")
                         string_print("Error:missing value",0.02,Fore.RED)
+                        print("")
+                        print("No matching question found.")
+                        if mode==False:
+                            subprocess.call(["say", "-v", "Daniel", "No matching question found."])
+                        learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
+
                     else:
                         print("")
                         string_print("check if your are conected to the internet 🛜",0.02,Fore.RED)

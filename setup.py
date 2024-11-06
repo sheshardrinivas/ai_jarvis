@@ -15,7 +15,6 @@ keyslist=["shift" , "control" , "option" , "command" , "tab" , "delete" , "capsl
 
 colorama.init(autoreset=True)
 
-
 def main():
 
 

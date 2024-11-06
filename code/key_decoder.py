@@ -1,6 +1,10 @@
 from pynput import keyboard
 import pynput
 import time
+
+
+
+
 def string_print(string_,time_,color_):
   for i in range(len(string_)):
     print(f"{color_}{string_[i]}",end="")

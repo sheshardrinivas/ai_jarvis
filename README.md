@@ -23,43 +23,27 @@ open your terminal and paste this command in it.
 
 4. pip install -r requirements.txt
 
-now just run it by running this command.
+Now run the setup wizard by run the command.
 
-5. python key.py
+5. python3 setup.py
 
+After that run jarvis by this command.
 
-
-
-
-
-
-
-
-## How to use :
-
-Now press control+shift for text-mode if you want to activate vioce controlled mode press shift+🎙️. The 🎙️ button on mac is the f5 key.
-
-
-
-
-
-
-
-
+python3 code/key.py 
 
 
 ## optional steps :
 
-open your ~/.zshrc file with nano.
+1. open your ~/.zshrc file with nano or vim.
 
-nano ~/.zshrc
+ nano ~/.zshrc or vim ~/.zshrc
 
-and paste this command.
+2. Now paste this command.
 
-alias jarvis="python ~/documents/ai_jarvis/code/key.py"
+ alias jarvis="python3 ~/documents/ai_jarvis/code/key.py"
 
-now press control+x , y , enter.
+ now press control+x , y , enter.
 
-restart your terminal and paste this command.
+3. restart your terminal and paste this command.
 
-source ~/.zshrc
+   source ~/.zshrc
