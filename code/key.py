@@ -18,11 +18,15 @@ import sys
 import os
 
 def is_connected():
-    try:
-        requests.head('https://www.google.com', timeout=1)
-        return True
-    except requests.RequestException:
+ try:
+        response = requests.get("https://www.google.com", timeout=5)
+        return response.status_code == 200
+ except requests.ConnectionError:
         return False
+       
+    
+   
+       
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from setup import main
@@ -180,7 +184,7 @@ def detect(text,data,mode):
                         learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
 
                 except:
-                    if is_connected ==True:
+                    if is_connected:
                         print("")
                         string_print("Error:missing value",0.02,Fore.RED)
                         print("")
@@ -188,7 +192,6 @@ def detect(text,data,mode):
                         if mode==False:
                             subprocess.call(["say", "-v", "Daniel", "No matching question found."])
                         learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
-
                     else:
                         print("")
                         string_print("check if your are conected to the internet 🛜",0.02,Fore.RED)
