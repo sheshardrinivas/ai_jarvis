@@ -5,6 +5,7 @@ import json
 import progressbar
 import time
 import os
+from mode import mode
 current_file_path = os.path.abspath(__file__)
 current_dir = os.path.dirname(current_file_path)
 path_data = current_dir

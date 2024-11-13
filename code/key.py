@@ -16,25 +16,26 @@ import wikipedia
 import requests
 import sys
 import os
-
+# from setup import main
+from key_decoder import key_value,string_print
 def is_connected():
  try:
         response = requests.get("https://www.google.com", timeout=5)
         return response.status_code == 200
- except requests.ConnectionError:
+ except :
         return False
-       
-    
-   
-       
+
+
+
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from setup import main
+
 
 mode1=0
 counter=0
 l=True
-from key_decoder import key_value,string_print
+
 current_file_path = os.path.abspath(__file__)
 
 current_dir = os.path.dirname(current_file_path)
@@ -137,7 +138,7 @@ def detect(text,data,mode):
             string_print("going to sleep...",0.01,Fore.WHITE)
             sleep1()
 
-     elif "jarvis" in text.lower()  and "youtube" in text.lower() :
+     elif  "youtube" in text.lower() :
 
            open_new("https://www.youtube.com")
 
@@ -159,7 +160,7 @@ def detect(text,data,mode):
                  if mode==False:
                        subprocess.call(["say", "-v", "Daniel", data['ans'][i]])
                  print("")
-                 string_print(data['ans'][i]+"f",0.02,Fore.BLUE)
+                 string_print(data['ans'][i],0.02,Fore.BLUE)
                  match_found = True
                  break
          if not match_found:
@@ -234,9 +235,9 @@ def activate():
               response2=recognition2.recognize_google(audio2)
               print(response2)
               print("lowercase: ",response2.lower())
-
-
-              detect(text=response2.lower(),data=data,mode=False)
+              if "jarvis" in response2.lower():
+                  answer=response2.lower().replace("jarvis"," ")
+                  detect(text=answer,data=data,mode=False)
 
 
              except sr.UnknownValueError:
@@ -304,10 +305,6 @@ def key_detect():
         HOTKEY1 = {key_value[keybinders["key_binding2"][0]],key_value[keybinders["key_binding2"][1]]}
         HOTKEY2 = {key_value[keybinders["key_binding1"][0]],key_value[keybinders["key_binding1"][1]]}
 
-
-
-
-
         current_keys = set()
 
         def on_press(key):
@@ -338,11 +335,13 @@ def key_detect():
         print(" ")
         string_print("Try remapping the keys by running setup.py ",0.02,Fore.RED)
         print(" ")
-        string_print("Do you want remap the keys if yes type y. -->",0.02,Fore.RED)
-        in_1=input(" ")
-        print(" ")
-        if "y" in in_1:
-            main()
+        # string_print("Do you want remap the keys if yes type y. -->",0.02,Fore.RED)
+        # in_1=input(" ")
+        # print(" ")
+        # if "y" in in_1:
+        #     # main()
+        #  string_print("Try remapping the keys by running setup.py ",0.02,Fore.RED)
+            
 if __name__ == "__main__":
     try:
         print(path_location)
