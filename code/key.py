@@ -46,7 +46,10 @@ with open(path_location+"/json files/config.json","r") as f:
 def start(mode):
 
         current_hour = datetime.datetime.now().hour
-
+        if mode=="voice":
+            mode1=False
+        else:
+            mode1=True
         with open(path_location+"/json files/r.json","r") as f:
             data=json.loads(f.read())
         if 5 <= current_hour < 12:
@@ -101,7 +104,9 @@ def learn_fun(q,a,q1):
         string_print("ok",0.01,"")
         learn(q1)
     if q_value==0:
-        subprocess.call(["say","-v", "Daniel","ok"])
+        if mode1==False:
+         subprocess.call(["say","-v", "Daniel","ok"])
+        print("ok")
 def has_string(var):
             return isinstance(var, str)
 def detect(text,data,mode):
