@@ -3,3 +3,4 @@ __pycache__/
 ai_jarvis_venv
 .tours
 bin
+training.py

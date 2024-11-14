@@ -155,7 +155,7 @@ def detect(text,data,mode):
          if mode==False:
           subprocess.call(["say","-v", "Daniel",f"the time is {strtime}"])
 
-     elif "how to" in text.lower() or "how" in text.lower() or "who is" in text.lower() or "what is" in text.lower() or "where is" in text.lower() or "what are" in text.lower()  :
+     elif  text.lower()  :
          with open(path_location+"/json files/learn.json", 'r') as file:
             data = json.load(file)
 
@@ -211,15 +211,15 @@ def detect(text,data,mode):
                 learn(q)
 
 
-     else :
+     # else :
 
-            if mode==True:
-              say_1=data["IDK"][random.randint(0,1)]["tell"]
-              print(f"{say_1}")
-            if mode==False:
-                say_2=data["IDK"][random.randint(0,3)]["tell"]
-                print(f"{say_2}")
-                subprocess.call(["say","-v","Daniel", f"{say_2}"])
+     #        if mode==True:
+     #          say_1=data["IDK"][random.randint(0,1)]["tell"]
+     #          print(f"{say_1}")
+     #        if mode==False:
+     #            say_2=data["IDK"][random.randint(0,3)]["tell"]
+     #            print(f"{say_2}")
+     #            subprocess.call(["say","-v","Daniel", f"{say_2}"])
 def activate():
  with open(path_location+"/json files/r.json","r") as f:
         data=json.loads(f.read())
