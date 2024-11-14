@@ -2,11 +2,13 @@
   "questions": [
     "what is a light bulb",
     "what is a solar panel",
-    "what is a car"
+    "what is a car",
+    "how to make a website"
   ],
   "ans": [
     "light bulb is a device which emits light",
     "solar panel is a device which can get the energy from the Sun",
-    "car is a mean of transport"
+    "car is a mean of transport",
+    "choose a domain & hosting, install a code editor (like vs code), create a folder, add an index.html for structure, style.css for design, script.js for interactivity, link them, write html tags, style with css, add javascript functionality, test in a browser, optimize for mobile, validate code, deploy using github pages or a web host, and promote the site."
   ]
 }

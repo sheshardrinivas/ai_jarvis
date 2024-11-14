@@ -11,7 +11,7 @@ from webbrowser import  Error, open_new
 from playsound import playsound
 import datetime
 import json
-from def_1 import question_1_0,learn
+from def_1 import question_1_0,learn,text_learn
 import wikipedia
 import requests
 import sys
@@ -171,8 +171,8 @@ def detect(text,data,mode):
          if not match_found:
                 try:
                     q=text.lower()
-                    r1=wikipedia.summary(q,10)
-                    r2=wikipedia.summary(q,2)
+                    r1=wikipedia.summary(q,10).replace("==","_")
+                    r2=wikipedia.summary(q,2).replace("==","")
                     if has_string(r1) == True :
 
 
@@ -182,12 +182,7 @@ def detect(text,data,mode):
                             if mode==False:
 
                                 subprocess.call(["say", "-v", "Daniel", f"{r2}" ])
-                    else:
-                        print("")
-                        print("No matching question found.")
-                        if mode==False:
-                            subprocess.call(["say", "-v", "Daniel", "No matching question found."])
-                        learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
+
 
                 except:
                     if is_connected:
@@ -197,7 +192,14 @@ def detect(text,data,mode):
                         print("No matching question found.")
                         if mode==False:
                             subprocess.call(["say", "-v", "Daniel", "No matching question found."])
-                        learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
+                            learn_fun("should I start the machine learning protocol?",["no","start"],text.lower())
+                        else:
+                            print("")
+                            string_print("write the answer >>>",0.02,Fore.WHITE)
+                            a=input(" ")
+                            a=str(a)
+                            a=a.lower()
+                            text_learn(text.lower(),a)
                     else:
                         print("")
                         string_print("check if your are conected to the internet 🛜",0.02,Fore.RED)
@@ -346,7 +348,7 @@ def key_detect():
         # if "y" in in_1:
         #     # main()
         #  string_print("Try remapping the keys by running setup.py ",0.02,Fore.RED)
-            
+
 if __name__ == "__main__":
     try:
         print(path_location)
