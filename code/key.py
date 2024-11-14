@@ -155,7 +155,7 @@ def detect(text,data,mode):
          if mode==False:
           subprocess.call(["say","-v", "Daniel",f"the time is {strtime}"])
 
-     elif  text.lower()  :
+     else   :
          with open(path_location+"/json files/learn.json", 'r') as file:
             data = json.load(file)
 
@@ -205,10 +205,10 @@ def detect(text,data,mode):
                         string_print("check if your are conected to the internet 🛜",0.02,Fore.RED)
 
 
-     elif "understand" in text.lower() or "learn" in text.lower():
-                q = text.lower().replace("unserstand", " ")
-                q = text.lower().replace("learn", " ")
-                learn(q)
+     # elif "understand" in text.lower() or "learn" in text.lower():
+     #            q = text.lower().replace("unserstand", " ")
+     #            q = text.lower().replace("learn", " ")
+     #            learn(q)
 
 
      # else :
