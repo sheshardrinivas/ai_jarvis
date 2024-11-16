@@ -48,12 +48,12 @@ def main():
         print(" ")
         try:
 
-            string_1="which keys should be used for activating the text mode . type the key name with a comma . example:shift,control.  ---> "
+            string_1="which keys should be used for activating the text mode . type the key name with a space . example:shift control  ---> "
             string_print(string_1,0.02,colorama.Fore.GREEN)
 
             keyboard_binding_in1=input(f"{colorama.Fore.BLUE} ")
 
-            short_key1=keyboard_binding_in1.split(",")
+            short_key1=keyboard_binding_in1.split(" ")
             print(key_bind["key_binding1"])
             print(f"{colorama.Fore.WHITE}{short_key1[0],short_key1[1]}")
 
@@ -65,17 +65,23 @@ def main():
               json.dump(key_bind, file)
 #voice
             print("  ")
-            string_2="which keys should be used for activating the voice mode . type the key name with a comma . example: shift,f1.  ---> "
+            string_2="which keys should be used for activating the voice mode . type the key name with a space . example: shift f1  ---> "
             string_print(string_2,0.02,colorama.Fore.BLUE)
             keyboard_binding_in2=input(f"{colorama.Fore.MAGENTA} ")
 
-            short_key2=keyboard_binding_in2.split(",")
+            short_key2=keyboard_binding_in2.split(" ")
             print(key_bind["key_binding2"])
             print(f"{colorama.Fore.WHITE}{short_key2[0],short_key2[1]}")
 
 
-            key_bind["key_binding2"]=[short_key2[0],short_key2[1]]
-
+           
+            print("  ")
+            string_4="which system your . list: docker,dev-container,liunx,macos  ---> "
+            string_print(string_4,0.02,colorama.Fore.BLUE)
+            keyboard_binding_in3=input(f"{colorama.Fore.MAGENTA} ")
+            key_bind["system"]=keyboard_binding_in3
+            
+            
 
             with open(current_dir+"/json files/config.json", 'w') as file:
                 json.dump(key_bind, file)

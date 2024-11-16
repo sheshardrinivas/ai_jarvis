@@ -1,6 +1,7 @@
 from time import sleep
-from pynput import keyboard
 import pynput
+from pynput import keyboard
+
 import speech_recognition as sr
 import subprocess
 import colorama
@@ -16,7 +17,6 @@ import wikipedia
 import requests
 import sys
 import os
-# from setup import main
 from key_decoder import key_value,string_print
 def is_connected():
  try:
@@ -35,7 +35,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 mode1=0
 counter=0
 l=True
-
+system=""
 current_file_path = os.path.abspath(__file__)
 
 current_dir = os.path.dirname(current_file_path)
@@ -43,6 +43,7 @@ path_location=current_dir.replace("code","")
 colorama.init(autoreset=True)
 with open(path_location+"/json files/config.json","r") as f:
     keybinders=json.loads(f.read())
+system=keybinders["system"]
 def start(mode):
 
         current_hour = datetime.datetime.now().hour
@@ -342,16 +343,20 @@ def key_detect():
         print(" ")
         string_print("Try remapping the keys by running setup.py ",0.02,Fore.RED)
         print(" ")
-        # string_print("Do you want remap the keys if yes type y. -->",0.02,Fore.RED)
-        # in_1=input(" ")
-        # print(" ")
-        # if "y" in in_1:
-        #     # main()
-        #  string_print("Try remapping the keys by running setup.py ",0.02,Fore.RED)
+        string_print("By running 'python code/key.py' in your terminal.",0.02,Fore.RED)
+       
 
 if __name__ == "__main__":
     try:
-        print(path_location)
-        key_detect()
+        if "macos" in system:
+            print(path_location)
+            key_detect()
+        if "liunx" in system:
+            text_mode()
+        if "docker" in system:
+            text_mode()
+        if "dev-container" in system:
+            text_mode()
+        
     except KeyboardInterrupt:
         print("")
