@@ -352,11 +352,11 @@ if __name__ == "__main__":
             print(path_location)
             key_detect()
         if "liunx" in system:
-            text_mode()
+            start("text")
         if "docker" in system:
-            text_mode()
+            start("text")
         if "dev-container" in system:
-            text_mode()
+            start("text")
         
     except KeyboardInterrupt:
         print("")
