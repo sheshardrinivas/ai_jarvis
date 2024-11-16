@@ -4,3 +4,4 @@ ai_jarvis_venv
 .tours
 bin
 training.py
+.devcontainer
