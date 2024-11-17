@@ -5,3 +5,4 @@ ai_jarvis_venv
 bin
 training.py
 .devcontainer
+.github
