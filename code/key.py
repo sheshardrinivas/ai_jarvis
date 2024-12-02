@@ -147,6 +147,7 @@ def detect(text,data,mode):
      elif  "youtube" in text.lower() :
 
            webbrowser.open("https://www.youtube.com")
+   
 
 
      elif "what is the time" in text.lower() or "what's the time" in text.lower() or "what's the time ?" in text.lower() or  "what is the time ?" in text.lower():
