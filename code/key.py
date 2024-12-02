@@ -248,7 +248,7 @@ def activate():
                   subprocess.call(["say","-v", "Daniel","good bye sir."])
                   print("going to sleep...")
                   counter=+1
-                  key_detect()
+                  sleep1()
 def text_mode():
     text_histroy=[]
     playsound(path_location+"/sounds/jug-pop-2-186887.mp3")
