@@ -1,7 +1,7 @@
 from time import sleep
 import pynput
 from pynput import keyboard
-
+import webbrowser
 import speech_recognition as sr
 import subprocess
 import colorama
@@ -146,7 +146,7 @@ def detect(text,data,mode):
 
      elif  "youtube" in text.lower() :
 
-           open_new("https://www.youtube.com")
+           webbrowser.open("https://www.youtube.com")
 
 
      elif "what is the time" in text.lower() or "what's the time" in text.lower() or "what's the time ?" in text.lower() or  "what is the time ?" in text.lower():
@@ -175,14 +175,15 @@ def detect(text,data,mode):
                     r1=wikipedia.summary(q,10).replace("==","_")
                     r2=wikipedia.summary(q,2).replace("==","")
                     if has_string(r1) == True :
+                            if mode==False:
+
+                                subprocess.call(["say", "-v", "Daniel", f"{r2}" ])
 
 
 
                             print("")
                             string_print(r1,0.02,Fore.BLUE)
-                            if mode==False:
 
-                                subprocess.call(["say", "-v", "Daniel", f"{r2}" ])
 
 
                 except:
@@ -284,7 +285,7 @@ def sleep1():
 
           response=recognition.recognize_google(audio)
           print(response)
-          if "jarvis" in response.lower()  and "wake up" in response.lower()  or "wake up" in response.lower() or "jarvis" in response.lower():
+          if "jarvis" in response.lower()  and "wake up" in response.lower()  or "wake up" in response.lower() or "wake up" in response.lower():
               activate()
               break
           if "jarvis" in response.lower()  and "goodbye" in response.lower() or "goodbye" in response.lower():
