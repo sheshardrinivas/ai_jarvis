@@ -44,6 +44,41 @@ colorama.init(autoreset=True)
 with open(path_location+"/json files/config.json","r") as f:
     keybinders=json.loads(f.read())
 system=keybinders["system"]
+
+def sleep1():
+    playsound(path_location+"/sounds/notification-sound-7062.mp3")
+    print(" ")
+    string_print("listening.....",0.02,Fore.GREEN)
+
+    while True:
+     with sr.Microphone() as source:
+      recognition=sr.Recognizer()
+      recognition.adjust_for_ambient_noise(source)
+
+
+      try:
+
+
+
+          audio=recognition.listen(source,timeout=False,phrase_time_limit=2)
+
+          response=recognition.recognize_google(audio)
+          print(response)
+          if "jarvis" in response.lower()  and "wake up" in response.lower()  or "wake up" in response.lower() or "wake up" in response.lower():
+              activate()
+              break
+          if "jarvis" in response.lower()  and "goodbye" in response.lower() or "goodbye" in response.lower():
+              counter=+1
+              key_detect()
+              break
+
+          elif "jarvis" in response.lower()  and   "what is the time" in response.lower() or "jarvis" in response.lower()  and   "what's the time" in response.lower() or  "what's the time" in response.lower() :
+              strtime=datetime.datetime.now().strftime("%H:%M:%S")
+              print(f"the time is {strtime}")
+              subprocess.call(["say","-v", "Daniel",f"the time is {strtime}"])
+
+      except sr.UnknownValueError:
+         pass
 def start(mode):
 
         current_hour = datetime.datetime.now().hour
@@ -235,7 +270,7 @@ def activate():
 
 
 
-              audio2=recognition2.listen(source,timeout=False,phrase_time_limit=10)
+              audio2=recognition2.listen(source,timeout=False,phrase_time_limit=20)
               response2=recognition2.recognize_google(audio2)
               print(response2)
               print("lowercase: ",response2.lower())
@@ -245,8 +280,8 @@ def activate():
 
 
              except sr.UnknownValueError:
-              counter=counter+0.5
-              if counter >=2:
+              counter=counter+1
+              if counter >=5:
                   subprocess.call(["say","-v", "Daniel","good bye sir."])
                   print("going to sleep...")
                   counter=+1
@@ -267,40 +302,7 @@ def text_mode():
 
 
 
-def sleep1():
-    playsound(path_location+"/sounds/notification-sound-7062.mp3")
-    print(" ")
-    string_print("listening.....",0.02,Fore.GREEN)
 
-    while True:
-     with sr.Microphone() as source:
-      recognition=sr.Recognizer()
-      recognition.adjust_for_ambient_noise(source)
-
-
-      try:
-
-
-
-          audio=recognition.listen(source,timeout=False,phrase_time_limit=2)
-
-          response=recognition.recognize_google(audio)
-          print(response)
-          if "jarvis" in response.lower()  and "wake up" in response.lower()  or "wake up" in response.lower() or "wake up" in response.lower():
-              activate()
-              break
-          if "jarvis" in response.lower()  and "goodbye" in response.lower() or "goodbye" in response.lower():
-              counter=+1
-              key_detect()
-              break
-
-          elif "jarvis" in response.lower()  and   "what is the time" in response.lower() or "jarvis" in response.lower()  and   "what's the time" in response.lower() or  "what's the time" in response.lower() :
-              strtime=datetime.datetime.now().strftime("%H:%M:%S")
-              print(f"the time is {strtime}")
-              subprocess.call(["say","-v", "Daniel",f"the time is {strtime}"])
-
-      except sr.UnknownValueError:
-         pass
 def key_detect():
 
 
